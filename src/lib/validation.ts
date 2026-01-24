@@ -42,8 +42,8 @@ export interface TallySubmission {
 export function extractEmail(fields: TallyAnswer[]): string | null {
     const emailField = fields.find(
         f => f.field.type === 'INPUT_EMAIL' ||
-            f.field.id.toLowerCase().includes('email') ||
-            f.field.title.toLowerCase().includes('email')
+            (f.field.id && f.field.id.toLowerCase().includes('email')) ||
+            (f.field.title && f.field.title.toLowerCase().includes('email'))
     );
 
     if (emailField && typeof emailField.value === 'string') {
@@ -59,7 +59,7 @@ export function extractEmail(fields: TallyAnswer[]): string | null {
 function checkAttentionAnswer(fields: TallyAnswer[]): boolean {
     const attentionField = fields.find(
         f => f.field.id === ATTENTION_CHECK_FIELD_ID ||
-            f.field.title.toLowerCase().includes('if you read this')
+            (f.field.title && f.field.title.toLowerCase().includes('if you read this'))
     );
 
     if (!attentionField) {
