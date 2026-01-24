@@ -1,22 +1,21 @@
 /**
  * Validation Engine
  * 
- * Processes incoming survey data and determines validity through multi-criteria analysis:
- * - Bot detection: Fast submissions, honeypot fields
+ * Processes incoming survey data and determines validity:
  * - Attention-check: Decoy questions that must be answered correctly
  * - Duplicate detection: Same email submitted multiple times
+ * 
+ * Note: Bot detection is handled by Tally's built-in CAPTCHA
  */
 
 import { checkDuplicateEmail } from './supabase';
 
-// Configuration
-const MIN_SUBMISSION_TIME_SECONDS = 10; // Submissions faster than this are likely bots
+// Configuration - UPDATE THESE TO MATCH YOUR TALLY FORM
 const ATTENTION_CHECK_FIELD_ID = 'attention_check'; // Field ID in Tally form
 const ATTENTION_CHECK_CORRECT_ANSWER = '1'; // Expected answer: "If you read this, select option 1"
-const HONEYPOT_FIELD_ID = 'honeypot'; // Hidden field that should remain empty
 
 export type ClassificationResult = {
-    classification: 'valid' | 'bot' | 'attention_fail';
+    classification: 'valid' | 'attention_fail' | 'duplicate';
     reason: string;
 };
 
@@ -38,15 +37,6 @@ export interface TallySubmission {
 }
 
 /**
- * Calculate submission time in seconds (time from form load to submit)
- */
-function calculateSubmissionTime(createdAt: string, submittedAt: string): number {
-    const created = new Date(createdAt).getTime();
-    const submitted = new Date(submittedAt).getTime();
-    return (submitted - created) / 1000;
-}
-
-/**
  * Extract email from Tally submission fields
  */
 export function extractEmail(fields: TallyAnswer[]): string | null {
@@ -61,20 +51,6 @@ export function extractEmail(fields: TallyAnswer[]): string | null {
     }
 
     return null;
-}
-
-/**
- * Check if honeypot field was filled (indicates bot)
- */
-function checkHoneypot(fields: TallyAnswer[]): boolean {
-    const honeypotField = fields.find(f => f.field.id === HONEYPOT_FIELD_ID);
-
-    if (honeypotField && honeypotField.value) {
-        // Honeypot should be empty - if it has a value, it's likely a bot
-        return true;
-    }
-
-    return false;
 }
 
 /**
@@ -115,38 +91,21 @@ function checkAttentionAnswer(fields: TallyAnswer[]): boolean {
 export async function validateSubmission(
     submission: TallySubmission
 ): Promise<ClassificationResult> {
-    const { fields, createdAt, submittedAt } = submission;
+    const { fields } = submission;
 
-    // 1. Check honeypot (bot detection)
-    if (checkHoneypot(fields)) {
-        return {
-            classification: 'bot',
-            reason: 'Honeypot field was filled',
-        };
-    }
-
-    // 2. Check submission timing (bot detection)
-    const submissionTime = calculateSubmissionTime(createdAt, submittedAt);
-    if (submissionTime < MIN_SUBMISSION_TIME_SECONDS) {
-        return {
-            classification: 'bot',
-            reason: `Submission too fast: ${submissionTime.toFixed(1)} seconds`,
-        };
-    }
-
-    // 3. Check for duplicate email
+    // 1. Check for duplicate email
     const email = extractEmail(fields);
     if (email) {
         const isDuplicate = await checkDuplicateEmail(email);
         if (isDuplicate) {
             return {
-                classification: 'bot',
+                classification: 'duplicate',
                 reason: 'Duplicate email submission detected',
             };
         }
     }
 
-    // 4. Check attention question (human abuse detection)
+    // 2. Check attention question (human abuse detection)
     if (!checkAttentionAnswer(fields)) {
         return {
             classification: 'attention_fail',

@@ -4,8 +4,10 @@
  * Receives survey submissions from Tally, validates them,
  * and routes them to the appropriate handler:
  * - Valid: Insert into Supabase (triggers reward flow)
- * - Bot: Silent drop, no action
- * - Attention fail: Send abuse email, then drop
+ * - Duplicate: Silent drop (already rewarded)
+ * - Attention fail: Send abuse email
+ * 
+ * Note: Bot detection is handled by Tally's built-in CAPTCHA
  */
 
 import { NextRequest, NextResponse } from 'next/server';
@@ -34,24 +36,6 @@ interface TallyWebhookPayload {
 }
 
 /**
- * Verify Tally webhook signature (if configured)
- */
-function verifyWebhookSignature(request: NextRequest): boolean {
-    const secret = process.env.TALLY_WEBHOOK_SECRET;
-
-    // If no secret configured, skip verification (development mode)
-    if (!secret) {
-        console.warn('TALLY_WEBHOOK_SECRET not configured - skipping signature verification');
-        return true;
-    }
-
-    // Tally doesn't currently provide webhook signatures
-    // This is a placeholder for future implementation
-    // You could add custom header verification here
-    return true;
-}
-
-/**
  * Transform Tally payload to internal format
  */
 function transformTallyPayload(payload: TallyWebhookPayload): TallySubmission {
@@ -77,23 +61,14 @@ export async function POST(request: NextRequest) {
     console.log('Received Tally webhook');
 
     try {
-        // 1. Verify webhook signature
-        if (!verifyWebhookSignature(request)) {
-            console.error('Invalid webhook signature');
-            return NextResponse.json(
-                { error: 'Invalid signature' },
-                { status: 401 }
-            );
-        }
-
-        // 2. Parse payload
+        // 1. Parse payload
         const payload: TallyWebhookPayload = await request.json();
         console.log('Processing submission:', payload.data.responseId);
 
-        // 3. Transform to internal format
+        // 2. Transform to internal format
         const submission = transformTallyPayload(payload);
 
-        // 4. Extract email
+        // 3. Extract email
         const email = extractEmail(submission.fields);
         if (!email) {
             console.error('No email found in submission');
@@ -103,44 +78,37 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        // 5. Run validation
+        // 4. Run validation (attention-check + duplicate detection only)
         const validationResult = await validateSubmission(submission);
         console.log('Validation result:', validationResult);
 
-        // 6. Calculate submission time
-        const submissionTimeSeconds =
-            (new Date(submission.submittedAt).getTime() - new Date(submission.createdAt).getTime()) / 1000;
-
-        // 7. Handle based on classification
+        // 5. Handle based on classification
         switch (validationResult.classification) {
             case 'valid':
-                // Insert into database - this will trigger Supabase webhook
+                // Insert into database - this will trigger Supabase webhook for reward
                 await insertSubmission({
                     email,
                     tally_response_id: submission.responseId,
                     answers: fieldsToAnswers(submission.fields),
                     classification: 'valid',
                     classification_reason: validationResult.reason,
-                    submission_time_seconds: submissionTimeSeconds,
                 });
                 console.log('Valid submission stored:', submission.responseId);
                 break;
 
-            case 'bot':
-                // Silent drop - no action, no email
-                // Optionally log for monitoring
-                console.log('Bot submission dropped:', submission.responseId, validationResult.reason);
+            case 'duplicate':
+                // Silent drop - user already received reward
+                console.log('Duplicate submission ignored:', submission.responseId, email);
                 break;
 
             case 'attention_fail':
                 // Store for records, then send abuse email
-                const failedSubmission = await insertSubmission({
+                await insertSubmission({
                     email,
                     tally_response_id: submission.responseId,
                     answers: fieldsToAnswers(submission.fields),
                     classification: 'attention_fail',
                     classification_reason: validationResult.reason,
-                    submission_time_seconds: submissionTimeSeconds,
                 });
 
                 // Send abuse notification email
@@ -153,7 +121,7 @@ export async function POST(request: NextRequest) {
                 break;
         }
 
-        // Always return success to Tally (they don't need validation details)
+        // Always return success to Tally
         return NextResponse.json({
             success: true,
             classification: validationResult.classification,
