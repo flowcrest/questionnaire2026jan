@@ -1,0 +1,90 @@
+N[11]:
+  - i: "1000000000101"
+    n: Survey User
+    d: End user who submits answers through the survey form. The user may be a legitimate participant or an automated bot. The user only interacts with the survey UI and receives email notifications as output.
+    in[0]:
+    out[1]: survey_submission
+    img[0]:
+  - i: "1000000000102"
+    n: Tally Form
+    d: "Survey form built with Tally. Collects user answers, applies built-in anti-abuse mechanisms such as CAPTCHA and rate limits, and forwards each submission to a backend webhook endpoint."
+    in[1]: submission_input
+    out[1]: webhook_payload
+    img[0]:
+  - i: "1000000000103"
+    n: Backend Webhook
+    d: "Serverless API endpoint running on Vercel. Receives survey submissions from Tally, parses the payload, and coordinates validation, persistence, and all outbound integrations."
+    in[1]: tally_webhook
+    out[1]: submission_data
+    img[0]:
+  - i: "1000000000104"
+    n: Validation Engine
+    d: "Processes incoming survey data and determines validity. Performs attention-check evaluation, duplicate email detection, submission timing analysis, and basic abuse heuristics. Classifies submissions as valid, bot-generated, or human-abuse (attention check failure, this works in the way of decoy questions in the tally form for example: If you read this press option 1). Produces a validation decision used by later steps."
+    in[1]: raw_submission
+    out[3]: valid_submission,bot_submission,attention_fail
+    img[0]:
+  - i: "1000000000105"
+    n: Supabase Database
+    d: "Persistent storage used to record all survey submissions and validation outcomes. Stores email, submission metadata, classification result, and issued promotion codes. Acts as a passive state store queried by backend logic."
+    in[1]: submission_record
+    out[1]: stored_submission
+    img[0]:
+  - i: "1000000000106"
+    n: Stripe API
+    d: "External billing platform used to generate one-time promotion codes. Creates fixed-amount discounts equivalent to one monthly subscription fee, applicable to eligible subscription plans."
+    in[1]: coupon_request
+    out[1]: promo_code
+    img[0]:
+  - i: "1000000000107"
+    n: Mailgun API
+    d: Transactional email service used to deliver emails initiated by the backend. Sends either reward emails containing promotion codes or abuse-notification emails without codes.
+    in[1]: email_payload
+    out[1]: email_sent
+    img[0]:
+  - i: "1000000000108"
+    n: Reward Email
+    d: Email delivered to valid users containing a personalized Stripe promotion code and instructions for redeeming the one-month-equivalent subscription discount.
+    in[1]: reward_content
+    out[0]:
+    img[0]:
+  - i: "1000000000109"
+    n: Abuse Email
+    d: Notification email sent to real users who failed attention-check questions. Informs the user that abuse was detected and that no reward code will be issued.
+    in[1]: abuse_content
+    out[0]:
+    img[0]:
+  - i: "1000000000110"
+    n: Drop Handler
+    d: Terminal processing node for invalid submissions. Bot requests are silently discarded with no external communication. Attention-check failures trigger an abuse notification email via backend-controlled flow.
+    in[2]: bot_input,attention_fail_input
+    out[1]: abuse_email_trigger
+    img[0]:
+  - i: 1769248006217
+    n: Supabase webhook event
+    d: "When a new record is inserted into the supabase database we create the new stripe promo code.\n\nWe also send the email with the relevant code to the email address of the new user."
+    in[1]: email_address
+    out[2]: stripe_promo_code,email_sending
+    img[0]:
+E[13]:
+  - [4]: "1000000000101",0,"1000000000102",0
+  - [4]: "1000000000102",0,"1000000000103",0
+  - [4]: "1000000000103",0,"1000000000104",0
+  - [4]: "1000000000104",0,"1000000000105",0
+  - [4]: "1000000000104",1,"1000000000110",0
+  - [4]: "1000000000104",2,"1000000000110",1
+  - [4]: "1000000000106",0,"1000000000107",0
+  - [4]: "1000000000110",0,"1000000000107",0
+  - [4]: "1000000000107",0,"1000000000108",0
+  - [4]: "1000000000107",0,"1000000000109",0
+  - [4]: "1000000000105",0,1769248006217,0
+  - [4]: 1769248006217,0,"1000000000106",0
+  - [4]: 1769248006217,1,"1000000000107",0
+G[4]:
+  - i: "3000000000201"
+    n[2]: "1000000000101","1000000000102"
+  - i: "3000000000202"
+    n[3]: "1000000000103","1000000000104","1000000000110"
+  - i: "3000000000203"
+    n[1]: "1000000000105"
+  - i: "3000000000204"
+    n[2]: "1000000000106","1000000000107"

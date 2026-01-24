@@ -1,0 +1,5 @@
+{
+  "projectName": "Survey Reward Automation System",
+  "userPrompt": "Automated system that validates survey submissions, distinguishes bots from human abuse, issues Stripe rewards to valid users, and sends appropriate emails via backend-controlled logic.\n\nRuns on vercel.",
+  "lastUpdated": "2026-01-24T10:10:42.086Z"
+}
