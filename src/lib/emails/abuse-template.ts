@@ -1,20 +1,20 @@
 /**
  * Abuse Notification Email Template
  * 
- * Email sent to users who failed the attention check question.
- * Notifies them that abuse was detected and no reward will be issued.
+ * Email sent to users who failed validation checks.
+ * Notifies them that the submission could not be verified and no reward will be issued.
  */
 
 interface EmailTemplate {
-    subject: string;
-    html: string;
-    text: string;
+  subject: string;
+  html: string;
+  text: string;
 }
 
 export function getAbuseEmailTemplate(): EmailTemplate {
-    const subject = 'Survey Submission Notice';
+  const subject = 'Survey Submission - Verification Notice';
 
-    const html = `
+  const html = `
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,7 +32,7 @@ export function getAbuseEmailTemplate(): EmailTemplate {
           <tr>
             <td style="background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%); padding: 40px 30px; text-align: center;">
               <h1 style="color: #ffffff; margin: 0; font-size: 26px; font-weight: 700;">
-                Survey Submission Notice
+                Submission Verification Notice
               </h1>
             </td>
           </tr>
@@ -41,21 +41,25 @@ export function getAbuseEmailTemplate(): EmailTemplate {
           <tr>
             <td style="padding: 40px 30px;">
               <p style="color: #333; font-size: 16px; line-height: 1.6; margin: 0 0 20px 0;">
-                Thank you for your interest in our survey.
+                Thank you for your interest in completing our survey.
               </p>
               
               <p style="color: #333; font-size: 16px; line-height: 1.6; margin: 0 0 20px 0;">
-                Unfortunately, we were unable to validate your submission. Our survey includes attention-check questions to ensure quality responses, and your submission did not meet our validation criteria.
+                We use a multi-layered verification system to ensure the authenticity and quality of survey responses. This includes behavioral analysis, response pattern evaluation, and consistency checks across multiple data points.
+              </p>
+              
+              <p style="color: #333; font-size: 16px; line-height: 1.6; margin: 0 0 20px 0;">
+                Unfortunately, your submission did not pass our verification process. Our system detected inconsistencies that prevented us from validating your response.
               </p>
               
               <div style="background-color: #fef3c7; border-left: 4px solid #f59e0b; padding: 15px 20px; margin: 25px 0; border-radius: 0 8px 8px 0;">
                 <p style="color: #92400e; font-size: 14px; margin: 0; font-weight: 500;">
-                  As a result, we are unable to issue a reward code for this submission.
+                  As a result, we are unable to issue a reward for this submission.
                 </p>
               </div>
               
               <p style="color: #555; font-size: 15px; line-height: 1.6; margin: 20px 0 0 0;">
-                If you believe this was an error or if you'd like to try again with a new submission, please feel free to contact us.
+                If you believe this was made in error, please reply to this email with details about your submission and we will review your case.
               </p>
             </td>
           </tr>
@@ -64,7 +68,7 @@ export function getAbuseEmailTemplate(): EmailTemplate {
           <tr>
             <td style="background-color: #f9f9f9; padding: 25px 30px; text-align: center; border-top: 1px solid #eee;">
               <p style="color: #888; font-size: 13px; margin: 0;">
-                If you have questions, please reply to this email.
+                Flowcrest Team
               </p>
             </td>
           </tr>
@@ -77,19 +81,21 @@ export function getAbuseEmailTemplate(): EmailTemplate {
 </html>
   `.trim();
 
-    const text = `
-Survey Submission Notice
+  const text = `
+Submission Verification Notice
 
-Thank you for your interest in our survey.
+Thank you for your interest in completing our survey.
 
-Unfortunately, we were unable to validate your submission. Our survey includes attention-check questions to ensure quality responses, and your submission did not meet our validation criteria.
+We use a multi-layered verification system to ensure the authenticity and quality of survey responses. This includes behavioral analysis, response pattern evaluation, and consistency checks across multiple data points.
 
-As a result, we are unable to issue a reward code for this submission.
+Unfortunately, your submission did not pass our verification process. Our system detected inconsistencies that prevented us from validating your response.
 
-If you believe this was an error or if you'd like to try again with a new submission, please feel free to contact us.
+As a result, we are unable to issue a reward for this submission.
 
-If you have questions, please reply to this email.
+If you believe this was made in error, please reply to this email with details about your submission and we will review your case.
+
+Flowcrest Team
   `.trim();
 
-    return { subject, html, text };
+  return { subject, html, text };
 }

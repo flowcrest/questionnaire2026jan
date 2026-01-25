@@ -2,21 +2,21 @@
  * Reward Email Template
  * 
  * Email sent to valid users containing their promotion code
- * and instructions for redemption.
+ * and detailed instructions for redemption.
  */
 
 interface EmailTemplate {
-    subject: string;
-    html: string;
-    text: string;
+  subject: string;
+  html: string;
+  text: string;
 }
 
 export function getRewardEmailTemplate(promoCode: string): EmailTemplate {
-    const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://flowcrest.app';
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://flowcrest.app';
 
-    const subject = '🎉 Thank you! Here\'s your reward';
+  const subject = '🎉 Thank you! Here\'s your reward';
 
-    const html = `
+  const html = `
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,7 +37,7 @@ export function getRewardEmailTemplate(promoCode: string): EmailTemplate {
                 Thank You! 🎉
               </h1>
               <p style="color: rgba(255, 255, 255, 0.9); margin: 15px 0 0 0; font-size: 16px;">
-                Your survey response has been received
+                Your survey response has been verified
               </p>
             </td>
           </tr>
@@ -46,7 +46,7 @@ export function getRewardEmailTemplate(promoCode: string): EmailTemplate {
           <tr>
             <td style="padding: 40px 30px;">
               <p style="color: #333; font-size: 16px; line-height: 1.6; margin: 0 0 20px 0;">
-                We truly appreciate you taking the time to complete our survey. As a thank you, we're giving you a <strong>one-month free subscription</strong>!
+                We truly appreciate you taking the time to complete our survey. As a thank you, we're giving you <strong>€2.90 off any subscription</strong> — that's <strong>1 month free</strong> on monthly plans, or €2.90 off yearly!
               </p>
               
               <!-- Promo Code Box -->
@@ -66,17 +66,26 @@ export function getRewardEmailTemplate(promoCode: string): EmailTemplate {
               </table>
               
               <h3 style="color: #333; font-size: 18px; margin: 30px 0 15px 0;">
-                How to redeem:
+                How to redeem your reward:
               </h3>
-              <ol style="color: #555; font-size: 15px; line-height: 1.8; padding-left: 20px; margin: 0;">
-                <li>Go to <a href="${appUrl}" style="color: #667eea; text-decoration: none;">our website</a></li>
-                <li>Sign up for a subscription plan</li>
-                <li>Enter code <strong>${promoCode}</strong> at checkout</li>
-                <li>Enjoy your free month!</li>
+              <ol style="color: #555; font-size: 15px; line-height: 2.0; padding-left: 20px; margin: 0;">
+                <li><strong>Visit</strong> <a href="${appUrl}" style="color: #667eea; text-decoration: none;">flowcrest.app</a></li>
+                <li><strong>Register</strong> for a free account (or log in if you already have one)</li>
+                <li>Go to <strong>Pricing</strong> page</li>
+                <li><strong>Choose your plan</strong> — Monthly or Yearly subscription</li>
+                <li>On the <strong>Stripe checkout page</strong>, click "Add promotion code"</li>
+                <li>Enter your code: <strong style="color: #667eea; font-family: monospace;">${promoCode}</strong></li>
+                <li>Complete your purchase and enjoy! 🚀</li>
               </ol>
               
+              <div style="background-color: #ecfdf5; border-left: 4px solid #10b981; padding: 15px 20px; margin: 25px 0; border-radius: 0 8px 8px 0;">
+                <p style="color: #065f46; font-size: 14px; margin: 0;">
+                  <strong>💡 Tip:</strong> This code gives you €2.90 off, which means your first month is completely free on any monthly plan!
+                </p>
+              </div>
+              
               <p style="color: #888; font-size: 14px; margin: 30px 0 0 0; padding-top: 20px; border-top: 1px solid #eee;">
-                This code is valid for one-time use only.
+                This code is valid for one-time use only and cannot be combined with other offers.
               </p>
             </td>
           </tr>
@@ -86,6 +95,9 @@ export function getRewardEmailTemplate(promoCode: string): EmailTemplate {
             <td style="background-color: #f9f9f9; padding: 25px 30px; text-align: center; border-top: 1px solid #eee;">
               <p style="color: #888; font-size: 13px; margin: 0;">
                 Questions? Reply to this email and we'll help you out.
+              </p>
+              <p style="color: #aaa; font-size: 12px; margin: 10px 0 0 0;">
+                Flowcrest Team
               </p>
             </td>
           </tr>
@@ -98,25 +110,33 @@ export function getRewardEmailTemplate(promoCode: string): EmailTemplate {
 </html>
   `.trim();
 
-    const text = `
+  const text = `
 Thank You! 🎉
 
-Your survey response has been received.
+Your survey response has been verified.
 
-We truly appreciate you taking the time to complete our survey. As a thank you, we're giving you a one-month free subscription!
+We truly appreciate you taking the time to complete our survey. As a thank you, we're giving you €2.90 off any subscription — that's 1 month free on monthly plans, or €2.90 off yearly!
 
 YOUR PROMO CODE: ${promoCode}
 
-How to redeem:
-1. Go to ${appUrl}
-2. Sign up for a subscription plan
-3. Enter code ${promoCode} at checkout
-4. Enjoy your free month!
+How to redeem your reward:
 
-This code is valid for one-time use only.
+1. Visit flowcrest.app
+2. Register for a free account (or log in if you already have one)
+3. Go to Pricing page
+4. Choose your plan — Monthly or Yearly subscription
+5. On the Stripe checkout page, click "Add promotion code"
+6. Enter your code: ${promoCode}
+7. Complete your purchase and enjoy! 🚀
+
+💡 Tip: This code gives you €2.90 off, which means your first month is completely free on any monthly plan!
+
+This code is valid for one-time use only and cannot be combined with other offers.
 
 Questions? Reply to this email and we'll help you out.
+
+Flowcrest Team
   `.trim();
 
-    return { subject, html, text };
+  return { subject, html, text };
 }
