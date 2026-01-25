@@ -10,9 +10,9 @@
 
 import { checkDuplicateEmail } from './supabase';
 
-// Configuration - UPDATE THESE TO MATCH YOUR TALLY FORM
-const ATTENTION_CHECK_FIELD_ID = 'attention_check'; // Field ID in Tally form
-const ATTENTION_CHECK_CORRECT_ANSWER = '1'; // Expected answer: "If you read this, select option 1"
+// Attention check question identifier (appears in all branches)
+const ATTENTION_CHECK_LABEL_PATTERN = 'have you been paying attention';
+const ATTENTION_CHECK_CORRECT_ANSWER = 'Yes';
 
 export type ClassificationResult = {
     classification: 'valid' | 'attention_fail' | 'duplicate';
@@ -55,34 +55,62 @@ export function extractEmail(fields: TallyAnswer[]): string | null {
 
 /**
  * Check if attention check question was answered correctly
+ * The question appears in multiple branches with the same text:
+ * "In the world of AI, we get results in a blink of an eye. This might undermine our attention spans. Have you been paying attention?"
+ * The correct answer is "Yes"
  */
 function checkAttentionAnswer(fields: TallyAnswer[]): boolean {
+    // Find attention check field(s) by label - there might be multiple (one per branch)
+    // We only need to check the one that was actually answered (value is not null)
     const attentionField = fields.find(
-        f => f.field.id === ATTENTION_CHECK_FIELD_ID ||
-            (f.field.title && f.field.title.toLowerCase().includes('if you read this'))
+        f => f.field.title &&
+            f.field.title.toLowerCase().includes(ATTENTION_CHECK_LABEL_PATTERN) &&
+            f.value !== null && f.value !== undefined
     );
 
     if (!attentionField) {
-        // No attention check field found - consider it passed
-        return true;
+        // No answered attention check field found - this shouldn't happen
+        // but if it does, log it and consider it failed
+        console.warn('No answered attention check field found');
+        return false;
     }
 
-    // Handle different value types from Tally
+    // Handle different value types from Tally (usually array of UUIDs for MULTIPLE_CHOICE)
     let answer: string;
     if (typeof attentionField.value === 'string') {
         answer = attentionField.value;
     } else if (Array.isArray(attentionField.value)) {
+        // For multiple choice, we get UUID(s) - we need to look up the text
+        // But at this point we only have the internal format without options
+        // So we'll just use the UUID as-is and compare
         answer = attentionField.value[0]?.toString() || '';
-    } else if (typeof attentionField.value === 'object' && attentionField.value !== null) {
-        answer = (attentionField.value as { id?: string }).id || '';
     } else {
         answer = String(attentionField.value);
     }
 
-    // Check if answer matches expected value (option 1)
-    return answer === ATTENTION_CHECK_CORRECT_ANSWER ||
-        answer.includes('1') ||
-        answer.toLowerCase().includes('option 1');
+    console.log('Attention check - Field title:', attentionField.field.title);
+    console.log('Attention check - Raw answer:', answer);
+
+    // Check if answer matches "Yes"
+    // Since we receive UUID, we need to check if the text contains "Yes" when resolved
+    // However, at validation stage we only have UUID - so we need a different approach
+    // Let's check the UUID against known "Yes" option IDs from the logs:
+    // Branch 1: "d52b3b5d-e0cd-454c-afa3-15276ea5b2ef" = "Yes"
+    // Branch 2: "ec4062ef-8d35-40f9-8afc-0bb67d41b086" = "Yes"  
+    // Branch 3: "875f4d5a-728d-40ce-91ef-ac72f9067627" = "Yes"
+    // Branch 4: "8d7272ab-3489-48fe-bc74-63573d026123" = "Yes"
+
+    const yesOptionIds = [
+        'd52b3b5d-e0cd-454c-afa3-15276ea5b2ef', // Branch 1
+        'ec4062ef-8d35-40f9-8afc-0bb67d41b086', // Branch 2
+        '875f4d5a-728d-40ce-91ef-ac72f9067627', // Branch 3
+        '8d7272ab-3489-48fe-bc74-63573d026123', // Branch 4
+    ];
+
+    const isCorrect = yesOptionIds.includes(answer);
+    console.log('Attention check - Is correct:', isCorrect);
+
+    return isCorrect;
 }
 
 /**
