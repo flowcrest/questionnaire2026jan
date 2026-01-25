@@ -1,0 +1,1480 @@
+2026-01-25 11:47:52.137 [info] ========================================
+2026-01-25 11:47:52.137 [info] Received Tally webhook
+2026-01-25 11:47:52.137 [info] ========================================
+2026-01-25 11:47:52.141 [info] ======= RAW TALLY PAYLOAD =======
+2026-01-25 11:47:52.144 [info] {
+  "eventId": "afeb698b-85cd-484f-8dda-67e7d9937e87",
+  "eventType": "FORM_RESPONSE",
+  "createdAt": "2026-01-25T11:47:51.316Z",
+  "data": {
+    "responseId": "A7gjQlD",
+    "submissionId": "A7gjQlD",
+    "respondentId": "Pd6eDPV",
+    "formId": "OD7dp7",
+    "formName": "AI Coding Usage and Difficulties Survey",
+    "createdAt": "2026-01-25T11:47:51.000Z",
+    "fields": [
+      {
+        "key": "question_K646qD",
+        "label": "Which best describes your current relationship with AI-assisted software development? (single choice)",
+        "type": "MULTIPLE_CHOICE",
+        "value": [
+          "08f809a3-f845-472a-a241-d714d9a2b41b"
+        ],
+        "options": [
+          {
+            "id": "08f809a3-f845-472a-a241-d714d9a2b41b",
+            "text": "I actively use AI to build or code projects"
+          },
+          {
+            "id": "db2f24cd-fc56-4b93-932c-1b5ae98b07aa",
+            "text": "I am curious about it, but haven’t used it yet"
+          },
+          {
+            "id": "8832280d-9919-442f-82cd-6905df037e36",
+            "text": "I’m aware of it, but don’t see a personal use for it right now"
+          },
+          {
+            "id": "cad73252-f886-4833-8555-eef078e16b2e",
+            "text": "I’m not familiar with it at all / Don't know what this is"
+          }
+        ]
+      },
+      {
+        "key": "question_LbjbQJ",
+        "label": "How would you describe your overall programming experience? (single choice)",
+        "type": "MULTIPLE_CHOICE",
+        "value": [
+          "773c9a94-3c1a-4f99-b826-5984338765be"
+        ],
+        "options": [
+          {
+            "id": "773c9a94-3c1a-4f99-b826-5984338765be",
+            "text": "I don’t have a technical background"
+          },
+          {
+            "id": "d591f1cd-1c9d-4af1-8a69-f561624b11b9",
+            "text": "Beginner (basic scripts, tutorials, simple apps)"
+          },
+          {
+            "id": "15b169b5-eb41-4139-9825-94708682cd38",
+            "text": "Intermediate (small full projects, APIs, basic deployment)"
+          },
+          {
+            "id": "41ddd031-22c6-466f-add9-fdd847eeaf70",
+            "text": "Advanced (production systems, architecture decisions, scaling)"
+          },
+          {
+            "id": "b751a3ea-4f4c-4647-af3d-b85b612b823d",
+            "text": "Professional (paid development, leading projects/teams)"
+          }
+        ]
+      },
+      {
+        "key": "question_pKNKlP",
+        "label": "How often do you use AI tools for coding or building digital products? (single choice)",
+        "type": "MULTIPLE_CHOICE",
+        "value": [
+          "0a933c09-a3f5-4995-a863-b55995ca667b"
+        ],
+        "options": [
+          {
+            "id": "0a933c09-a3f5-4995-a863-b55995ca667b",
+            "text": "Daily"
+          },
+          {
+            "id": "74ba9a25-5626-4f02-a79f-a78dbafeaed0",
+            "text": "Several times per week"
+          },
+          {
+            "id": "1b317388-5797-4bc2-b42f-5ed2b8d853f3",
+            "text": "Several times per month"
+          },
+          {
+            "id": "69853d4f-7846-489e-8738-140999dca764",
+            "text": "Rarely"
+          }
+        ]
+      },
+      {
+        "key": "question_1lYl1b",
+        "label": "What do you primarily use AI coding for? (multiple choice) ",
+        "type": "MULTIPLE_CHOICE",
+        "value": [
+          "72e640cd-bf72-4585-99d2-4ac27179fc33"
+        ],
+        "options": [
+          {
+            "id": "72e640cd-bf72-4585-99d2-4ac27179fc33",
+            "text": "Learning to code"
+          },
+          {
+            "id": "14ef2ebf-894d-43ed-ba84-61e4eed55005",
+            "text": "Building personal projects"
+          },
+          {
+            "id": "72752ce9-00c6-45a6-beff-2defa855bf07",
+            "text": "Startup / SaaS development"
+          },
+          {
+            "id": "918307a0-e8b5-4b49-bcee-c0fb39ed7714",
+            "text": "Client or freelance work"
+          },
+          {
+            "id": "6650d2e6-6f9c-4eea-a289-605bbe2a1f22",
+            "text": "Automation / internal tools"
+          },
+          {
+            "id": "aa34fef0-2348-45ca-92ed-e49c6e6c9469",
+            "text": "Prototyping / MVPs"
+          },
+          {
+            "id": "a7084ca9-9fc6-4325-bffa-e92e052e98d2",
+            "text": "Other",
+            "isOtherOption": true,
+            "optionId": "a7084ca9-9fc6-4325-bffa-e92e052e98d2"
+          }
+        ]
+      },
+      {
+        "key": "question_Mb2b98",
+        "label": "Which best describes your current role of identity? (single choice)",
+        "type": "MULTIPLE_CHOICE",
+        "value": [
+          "d87b27ba-efca-412d-9ab9-f6749fa71865"
+        ],
+        "options": [
+          {
+            "id": "d87b27ba-efca-412d-9ab9-f6749fa71865",
+            "text": "Student"
+          },
+          {
+            "id": "20458a32-809b-486a-827c-94bc461a6ed4",
+            "text": "Solo builder"
+          },
+          {
+            "id": "65572503-6678-4bc3-a69d-a7fdd6e8a200",
+            "text": "Startup founder / Co-founder"
+          },
+          {
+            "id": "fde6c0fa-b6f7-4558-a2b4-e01f24d7171b",
+            "text": "Freelancer"
+          },
+          {
+            "id": "20014851-ba90-4905-aa5c-16fc63204a33",
+            "text": "Developer (employed)"
+          },
+          {
+            "id": "5b8c3225-f952-4183-b476-9c84c6680ba0",
+            "text": "Product / UX builder"
+          },
+          {
+            "id": "f9183169-7fb4-437e-89b6-3ab946792815",
+            "text": "Manager / No-technical role"
+          }
+        ]
+      },
+      {
+        "key": "question_J6r6NX",
+        "label": "Which AI tools do you actively use for coding or building projects? (multiple choice)",
+        "type": "MULTIPLE_CHOICE",
+        "value": [
+          "036ad844-4304-4e20-846f-0c70a9329a7a"
+        ],
+        "options": [
+          {
+            "id": "036ad844-4304-4e20-846f-0c70a9329a7a",
+            "text": "ChatGPT"
+          },
+          {
+            "id": "2c52f100-f378-4f97-85d7-7a5dcf5cbf30",
+            "text": "Claude"
+          },
+          {
+            "id": "bbbb472d-dd8e-4d59-bc55-923a6719a8b2",
+            "text": "Cursor"
+          },
+          {
+            "id": "44b72504-348f-45f4-a9dc-8baf01af8e99",
+            "text": "Replit AI"
+          },
+          {
+            "id": "a7800ea4-1106-4a30-bc68-2947c3d72572",
+            "text": "GitHub Copilot"
+          },
+          {
+            "id": "f6f0786d-cf9f-4b4f-a4b7-051d5ddb9cb9",
+            "text": "Warp"
+          },
+          {
+            "id": "46f6abdc-e9d1-4b88-8c5e-ba779d4ed4ba",
+            "text": "Lovable"
+          },
+          {
+            "id": "67b5c7d5-e25e-42d9-a3ff-18b4d3ce3b58",
+            "text": "Base44"
+          },
+          {
+            "id": "ff19e008-f261-404f-8bfe-0ffea9e3bacf",
+            "text": "Google Antigravity"
+          },
+          {
+            "id": "d90ed680-e4ab-410f-a28e-6e8e670827e9",
+            "text": "Augment Code"
+          },
+          {
+            "id": "54318560-ab09-43f6-bfc3-6a5f6941ceb9",
+            "text": "Other",
+            "isOtherOption": true,
+            "optionId": "54318560-ab09-43f6-bfc3-6a5f6941ceb9"
+          }
+        ]
+      },
+      {
+        "key": "question_g0V0RJ",
+        "label": "How do you usually start a new AI coding project?",
+        "type": "MULTIPLE_CHOICE",
+        "value": [
+          "72c2ac11-9a7f-445e-ac58-f96adeb35ebe"
+        ],
+        "options": [
+          {
+            "id": "72c2ac11-9a7f-445e-ac58-f96adeb35ebe",
+            "text": "I ask AI generate the full project structure"
+          },
+          {
+            "id": "2fae4ae1-22be-4214-b688-f786e5174872",
+            "text": "I design the architecture first, then ask AI for parts"
+          },
+          {
+            "id": "82903145-3b8d-4eb7-90bb-52ac0bd1bb65",
+            "text": "I prompt feature by feature without clear plan"
+          },
+          {
+            "id": "c03bda61-7051-4860-8191-68ba524860e2",
+            "text": "I follow templates"
+          },
+          {
+            "id": "debacae1-3e89-4c68-8af0-460940cbe5eb",
+            "text": "Tech stack first and the full structure then building"
+          },
+          {
+            "id": "1807bb2a-0c94-49a8-b8cc-ee58ad21398c",
+            "text": "I mostly experiment without a fixed process"
+          }
+        ]
+      },
+      {
+        "key": "question_y6b6Wd",
+        "label": "How structured is your project organization (folders, files, modules, naming)?",
+        "type": "LINEAR_SCALE",
+        "value": 0
+      },
+      {
+        "key": "question_XD7DKz",
+        "label": "How confident are you in managing enviroments and setup? (APIs, keys, databases, versioning, hosting)",
+        "type": "LINEAR_SCALE",
+        "value": 0
+      },
+      {
+        "key": "question_8KYK0r",
+        "label": "How do you usually learn new technical skills? (multiple choice)",
+        "type": "MULTIPLE_CHOICE",
+        "value": [
+          "ce757853-5cf5-4d6b-a707-fcb7a196ae97"
+        ],
+        "options": [
+          {
+            "id": "fdd569c6-26d3-494d-ad24-4e3eec1e1aeb",
+            "text": "YouTube tutorials"
+          },
+          {
+            "id": "81b93051-51b6-4d01-8eba-7d17661789ca",
+            "text": "Online courses"
+          },
+          {
+            "id": "cf897b88-831c-4fe5-97fa-bba77f141644",
+            "text": "Documentation"
+          },
+          {
+            "id": "2dd2847a-c407-4ee3-a0bb-fb33db89931d",
+            "text": "Trial and error"
+          },
+          {
+            "id": "ce757853-5cf5-4d6b-a707-fcb7a196ae97",
+            "text": "Mentors / Communities"
+          },
+          {
+            "id": "daa2d5c1-fdcd-4024-8f65-4374a7d4d9a7",
+            "text": "AI explanations"
+          }
+        ]
+      },
+      {
+        "key": "question_0xYxpA",
+        "label": "What format helps you learn best? (single choice)",
+        "type": "MULTIPLE_CHOICE",
+        "value": [
+          "33374253-c913-4d5f-8551-b374c0e6d48b"
+        ],
+        "options": [
+          {
+            "id": "33374253-c913-4d5f-8551-b374c0e6d48b",
+            "text": "Short step-by-step videos"
+          },
+          {
+            "id": "78b06690-c23c-4614-aeb1-18681967b062",
+            "text": "Full project walkthroughs / long form videos"
+          },
+          {
+            "id": "cd49afa7-a810-41bf-b8cf-149deb494445",
+            "text": "Concept-focused explanations"
+          },
+          {
+            "id": "d4d9c295-1c46-4840-9160-cee251937617",
+            "text": "Checklists / frameworks"
+          },
+          {
+            "id": "12ce47e0-d8cb-4390-b911-e03bd1d63868",
+            "text": "Interactive exercises"
+          }
+        ]
+      },
+      {
+        "key": "question_zqAqag",
+        "label": "Which outcome would be most valuable to you from an AI coding education system? (single choice)",
+        "type": "MULTIPLE_CHOICE",
+        "value": [
+          "0ba3e39e-9a8d-449f-afe0-7bd584b353c9"
+        ],
+        "options": [
+          {
+            "id": "0ba3e39e-9a8d-449f-afe0-7bd584b353c9",
+            "text": "Build complete projects faster"
+          },
+          {
+            "id": "ce30ee14-c06a-43b4-9848-c46d567f2526",
+            "text": "Understand what the AI generates"
+          },
+          {
+            "id": "53c371e4-899e-44e5-8c6e-2db6312d7dc1",
+            "text": "Design better system architecture"
+          },
+          {
+            "id": "dc174a3e-c6b3-4bb8-afca-49fd5bcf297c",
+            "text": "Debug and fix issues confidently"
+          },
+          {
+            "id": "a62d5bb7-0b55-48c3-a33d-8e41126515d6",
+            "text": "Deploy and scale real products"
+          }
+        ]
+      },
+      {
+        "key": "question_5zYzyQ",
+        "label": "Have you ever paid for a technical or AI-relates course?",
+        "type": "MULTIPLE_CHOICE",
+        "value": [
+          "8546ba95-8fa8-4c22-b825-b8951b6e8f62"
+        ],
+        "options": [
+          {
+            "id": "8546ba95-8fa8-4c22-b825-b8951b6e8f62",
+            "text": "Yes, multiple times"
+          },
+          {
+            "id": "12aa1cc0-987b-4e98-b728-b7971bd695f2",
+            "text": "Yes, once"
+          },
+          {
+            "id": "48e1fd69-0829-457e-8707-139e5e8ec44a",
+            "text": "No, but I would consider it"
+          },
+          {
+            "id": "ad2e3824-7502-44bd-bf86-68ca41ae2683",
+            "text": "No, and I wouldn't pay for this"
+          }
+        ]
+      },
+      {
+        "key": "question_d6o65V",
+        "label": "What price range would feel reasonable for a high-quality, practical AI coding program? (single choice)",
+        "type": "MULTIPLE_CHOICE",
+        "value": [
+          "9aa34564-59c9-460d-b0a3-1520dbb82571"
+        ],
+        "options": [
+          {
+            "id": "9aa34564-59c9-460d-b0a3-1520dbb82571",
+            "text": "Free only"
+          },
+          {
+            "id": "c612a14b-ed31-45ba-b9b7-e266750d5e39",
+            "text": "Under $25"
+          },
+          {
+            "id": "9e68587b-2e12-41ff-a886-212410b0d081",
+            "text": "$25–$50"
+          },
+          {
+            "id": "29b639d5-3a8c-4cd5-b794-e2be936a4883",
+            "text": "$50–$100"
+          },
+          {
+            "id": "a4fa28ff-8564-4674-94eb-e9cf9a826158",
+            "text": "$100–$250"
+          },
+          {
+            "id": "8b18b568-0fb4-422f-8a4c-8a9367910231",
+            "text": "$250+"
+          }
+        ]
+      },
+      {
+        "key": "question_J6r2E4",
+        "label": "In the world of AI, we get results in a blink of an eye. This might undermine our attention spans. Have you been paying attention?",
+        "type": "MULTIPLE_CHOICE",
+        "value": [
+          "9c666e34-eed7-4c5e-8da9-45fe06375046"
+        ],
+        "options": [
+          {
+            "id": "9c666e34-eed7-4c5e-8da9-45fe06375046",
+            "text": "ChatGPT"
+          },
+          {
+            "id": "541663eb-d6c4-4829-a222-a338db7b14b8",
+            "text": "Claude"
+          },
+          {
+            "id": "28a5adef-babc-434a-9b8d-1cec83343dab",
+            "text": "Lovable"
+          },
+          {
+            "id": "f0b724f8-20d2-4076-b3d4-e5d5216c2a69",
+            "text": "Replit"
+          },
+          {
+            "id": "adb183b7-70e0-4ed8-ad77-f97619b0de3d",
+            "text": "Gemini"
+          },
+          {
+            "id": "d52b3b5d-e0cd-454c-afa3-15276ea5b2ef",
+            "text": "Yes"
+          }
+        ]
+      },
+      {
+        "key": "question_YQbQLv",
+        "label": "How important is AI-assisted development to your future plans? (single choice)",
+        "type": "MULTIPLE_CHOICE",
+        "value": [
+          "d1ade06a-551a-43b6-b198-079f7e248a6d"
+        ],
+        "options": [
+          {
+            "id": "d1ade06a-551a-43b6-b198-079f7e248a6d",
+            "text": "Just experimenting"
+          },
+          {
+            "id": "afb79172-8c61-40cd-8cf6-d51af5814e13",
+            "text": "Useful side skill"
+          },
+          {
+            "id": "2df9bd71-5cc8-43af-b9bf-deffa8f4c0c2",
+            "text": "Important for my career"
+          },
+          {
+            "id": "f3762d15-e899-4b9f-be96-87fe8127149f",
+            "text": "Core to my business or startup"
+          },
+          {
+            "id": "9cb9325c-58f4-4500-9f97-cd2fca98b4b1",
+            "text": "Central to my professional identity"
+          }
+        ]
+      },
+      {
+        "key": "question_DNoNlE",
+        "label": "Which best describes your main goal right now? (single choice)",
+        "type": "MULTIPLE_CHOICE",
+        "value": [
+          "3b1e156b-946b-4229-a2e3-adc59d21cb69"
+        ],
+        "options": [
+          {
+            "id": "3b1e156b-946b-4229-a2e3-adc59d21cb69",
+            "text": "Learn the basics"
+          },
+          {
+            "id": "97bc9853-a451-41de-8cdc-d2394225983c",
+            "text": "Build and launch a product"
+          },
+          {
+            "id": "fbf5683b-5f18-490f-a075-42ad5b0954ef",
+            "text": "Grow a startup or business"
+          },
+          {
+            "id": "9f0270ee-de16-498a-96a5-f76b611691ed",
+            "text": "Get a better job"
+          },
+          {
+            "id": "ccc0b995-9d27-4715-9f53-2949b0944bb1",
+            "text": "Improve productivity in my student role"
+          }
+        ]
+      },
+      {
+        "key": "question_lyjyPX",
+        "label": "How would you describe your current technical background? (single choice)",
+        "type": "MULTIPLE_CHOICE",
+        "value": null,
+        "options": [
+          {
+            "id": "eff9bed2-c88a-4aa3-9225-0aa9b06c721f",
+            "text": "No technical background at all"
+          },
+          {
+            "id": "2f9c598d-59aa-417d-b576-a4350b2e9da5",
+            "text": "Basic digital skills"
+          },
+          {
+            "id": "9615d432-0a76-4b3b-a307-d2dc11462f76",
+            "text": "Beginner coding"
+          },
+          {
+            "id": "d6b1b9e9-d802-4726-9c30-991a1caf52f4",
+            "text": "Intermediate coding"
+          },
+          {
+            "id": "04393208-43e3-4dfe-8c9b-0c2cd1b38792",
+            "text": "Advanced development"
+          }
+        ]
+      },
+      {
+        "key": "question_R0Q07Q",
+        "label": "What best describes what you currently build (if anything)? (multiple choice)",
+        "type": "MULTIPLE_CHOICE",
+        "value": null,
+        "options": [
+          {
+            "id": "ba5ceba3-413d-4ae0-b338-d3e024cf0ad5",
+            "text": "Nothing yet - just exploring"
+          },
+          {
+            "id": "d0b0d08f-ecbd-47f5-ae23-eb335795d837",
+            "text": "Websites / Landing pages"
+          },
+          {
+            "id": "4ee38abb-d156-4666-b1ac-dc25af5a870b",
+            "text": "Automations"
+          },
+          {
+            "id": "e863d72a-c7f2-44cd-99ab-9f0339952d26",
+            "text": "Mobile apps"
+          },
+          {
+            "id": "36cfaa88-cbe1-405d-adbd-72a055dd31c7",
+            "text": "Software / SaaS products"
+          },
+          {
+            "id": "19e60587-4c60-4c44-9d7b-68e5e4b9bb84",
+            "text": "Data / AI projects"
+          }
+        ]
+      },
+      {
+        "key": "question_oyZy4N",
+        "label": "What is your main reason for wanting to explore AI coding? (single choice)",
+        "type": "MULTIPLE_CHOICE",
+        "value": null,
+        "options": [
+          {
+            "id": "3b125e34-8c48-4f97-8aa6-133391465991",
+            "text": "Learn to build software faster"
+          },
+          {
+            "id": "98933f2d-4903-411a-b023-6fd242b92f59",
+            "text": "Launch a startup or a product"
+          },
+          {
+            "id": "ed82d0de-ec9c-4777-8ea3-c3e5b2c72e80",
+            "text": "Improve career opportunities"
+          },
+          {
+            "id": "52726d2f-9282-4ea7-bcf5-f10576fd09a3",
+            "text": "Automate work or business processes"
+          },
+          {
+            "id": "21131d9b-6178-4cb7-bf67-2f9cee3ada9c",
+            "text": "Curiosity / experimentation"
+          },
+          {
+            "id": "409e2dbf-e163-4aa7-9fae-a8b293224c0a",
+            "text": "Make money with digital products"
+          }
+        ]
+      },
+      {
+        "key": "question_GzVz2O",
+        "label": "What feels like the biggest barrier stopping you from starting right now? (single choice)",
+        "type": "MULTIPLE_CHOICE",
+        "value": null,
+        "options": [
+          {
+            "id": "81691cf3-334e-4eec-b044-28ea21bcf4ce",
+            "text": "I don't know where to begin"
+          },
+          {
+            "id": "fd96476f-a796-4cff-85a1-8b7cc426e68c",
+            "text": "I don't understand technical terms"
+          },
+          {
+            "id": "027a709d-50e8-4df2-8947-598e2294b6bf",
+            "text": "It feels too complex"
+          },
+          {
+            "id": "5bbe180d-ec86-40b4-9b54-0be16f1f58b0",
+            "text": "I don't trust AI-generated code"
+          },
+          {
+            "id": "85d2f474-3c81-4726-9de0-10ca264790c9",
+            "text": "I don't have time"
+          },
+          {
+            "id": "178818f3-f68c-4c36-9bcd-5e778e54d2df",
+            "text": "I don't see a clear use case"
+          }
+        ]
+      },
+      {
+        "key": "question_OzZzWM",
+        "label": "I believe I could build a real product using Ai if I had the right guidance",
+        "type": "LINEAR_SCALE",
+        "value": null
+      },
+      {
+        "key": "question_V0a0k6",
+        "label": "I worry that AI coding will create more problems than it solves",
+        "type": "LINEAR_SCALE",
+        "value": null
+      },
+      {
+        "key": "question_P6N6ax",
+        "label": "I feel confident learning technical systems without a teacher or mentor",
+        "type": "LINEAR_SCALE",
+        "value": null
+      },
+      {
+        "key": "question_EXGX42",
+        "label": "What would make you feel comfortable starting with AI coding? (single choice)",
+        "type": "MULTIPLE_CHOICE",
+        "value": null,
+        "options": [
+          {
+            "id": "c9059882-8381-4dc3-8378-e17874775cef",
+            "text": "Step-by-step beginner roadmap"
+          },
+          {
+            "id": "8a985ded-d9f6-4ab7-928d-caa72bf9ed0f",
+            "text": "Full project walkthrough"
+          },
+          {
+            "id": "da8ffb76-d56e-486f-adcd-c75fe72cb5a2",
+            "text": "Simple explanations"
+          },
+          {
+            "id": "4116e9f8-f21a-4220-a320-f5dbd6780f61",
+            "text": "Templates and ready made systems"
+          },
+          {
+            "id": "ed7e5a01-1351-426a-8b7f-4c7917c37159",
+            "text": "Community or mentor"
+          }
+        ]
+      },
+      {
+        "key": "question_r6Q6xX",
+        "label": "How much time could you invest per week to learn this? (single choice)",
+        "type": "MULTIPLE_CHOICE",
+        "value": null,
+        "options": [
+          {
+            "id": "76ee82c2-7c4e-4960-b99f-10017ac4b96f",
+            "text": "<1 hour"
+          },
+          {
+            "id": "2bc07e91-3f1d-494d-9d06-56e62cba257a",
+            "text": "1-2 hours"
+          },
+          {
+            "id": "1b445abe-2c26-4b68-9d65-de9fa9101fb5",
+            "text": "3-5 hours"
+          },
+          {
+            "id": "809c2b8b-67df-4f37-b5cf-dfbdc7cc5084",
+            "text": "6-10 hours"
+          },
+          {
+            "id": "c9e3ad01-046e-4a33-86da-1b1c1d4f79f4",
+            "text": "10+ hours"
+          }
+        ]
+      },
+      {
+        "key": "question_48Y8g5",
+        "label": "Which result would make learning Ai coding \"worth it\" for you? (single choice)",
+        "type": "MULTIPLE_CHOICE",
+        "value": null,
+        "options": [
+          {
+            "id": "ed7c7e50-708e-40b0-8af7-e1cc1652b45d",
+            "text": "Launch my first digital product"
+          },
+          {
+            "id": "4cd1bdaf-fd82-4174-817b-35b222fb9d7b",
+            "text": "Better job or freelance opportunities"
+          },
+          {
+            "id": "043c0663-14a3-4ae6-85b1-a3230945d4cc",
+            "text": "Automate tasks and save time"
+          },
+          {
+            "id": "cbbf5d76-5b9c-46eb-a6f0-fb8648cd3f56",
+            "text": "Build a startup or business"
+          },
+          {
+            "id": "db2ae170-aa7a-469f-95d0-59b8d41780ec",
+            "text": "Understand modern AI systems"
+          }
+        ]
+      },
+      {
+        "key": "question_jyryO1",
+        "label": "How likely would you be to invest in a beginner friendly AI coding program? (single choice)",
+        "type": "MULTIPLE_CHOICE",
+        "value": null,
+        "options": [
+          {
+            "id": "182d81d5-715b-40eb-a918-e57c7ef07046",
+            "text": "Very unlikely"
+          },
+          {
+            "id": "1aa470f7-a744-4f94-a644-a18ade985c4a",
+            "text": "Unlikely"
+          },
+          {
+            "id": "0093c184-5508-49af-95cf-8ab57c26dd61",
+            "text": "Likely"
+          },
+          {
+            "id": "26affaf4-1874-4c4a-98dd-4dc3634e2d65",
+            "text": "Very likely"
+          }
+        ]
+      },
+      {
+        "key": "question_2eYeMM",
+        "label": "What price range would feel reasonable for that a high quality program? (single choice)",
+        "type": "MULTIPLE_CHOICE",
+        "value": null,
+        "options": [
+          {
+            "id": "387fc0e0-1858-484f-980a-ec797c7ca24e",
+            "text": "Free only"
+          },
+          {
+            "id": "a50df52c-826d-46ad-88cb-852e425c4168",
+            "text": "Under $25"
+          },
+          {
+            "id": "143f47a6-7c05-41a6-b24d-4924545514b5",
+            "text": "$25–$50"
+          },
+          {
+            "id": "91d3be86-f1c7-4e24-8f1a-244f2afb0039",
+            "text": "$50–$100"
+          },
+          {
+            "id": "b351db7c-8cf7-4449-9c89-c637de67d5b8",
+            "text": "$100–$250"
+          },
+          {
+            "id": "30a24993-c31f-47b9-9747-630fd4dd1228",
+            "text": "$250+"
+          }
+        ]
+      },
+      {
+        "key": "question_g0V58l",
+        "label": "In the world of AI, we get results in a blink of an eye. This might undermine our attention spans. Have you been paying attention?",
+        "type": "MULTIPLE_CHOICE",
+        "value": null,
+        "options": [
+          {
+            "id": "94045b7a-97b7-4a3b-8c2c-fa1a8f8dd6c4",
+            "text": "ChatGPT"
+          },
+          {
+            "id": "9adad5ff-7983-47b9-bd20-9426f9a0ea55",
+            "text": "Claude"
+          },
+          {
+            "id": "868992e4-94fb-4d9b-b0e7-b169d815c654",
+            "text": "Lovable"
+          },
+          {
+            "id": "7a5bc9f7-c907-4236-9525-c258c01cbc67",
+            "text": "Replit"
+          },
+          {
+            "id": "fe571b5d-4bd9-4302-aa97-752ae9dc18f8",
+            "text": "Gemini"
+          },
+          {
+            "id": "ec4062ef-8d35-40f9-8afc-0bb67d41b086",
+            "text": "Yes"
+          }
+        ]
+      },
+      {
+        "key": "question_xp7pek",
+        "label": "Which best describes how you see yourself in 12 months? (single choice)",
+        "type": "MULTIPLE_CHOICE",
+        "value": null,
+        "options": [
+          {
+            "id": "6f1f67ae-f336-4120-a82c-2cf0e10d61c1",
+            "text": "Still exploring"
+          },
+          {
+            "id": "fb02d075-14a2-4c6c-84d9-8a4e74200079",
+            "text": "Building small projects"
+          },
+          {
+            "id": "848eac62-50a3-40fa-a4d7-db9f8f3ea069",
+            "text": "Running a product or startup"
+          },
+          {
+            "id": "80853ef2-e2e1-45af-8160-df726c2e1740",
+            "text": "Working professionally with AI"
+          },
+          {
+            "id": "d61432c8-4a01-4bc0-8638-93ba43c047bb",
+            "text": "Leading technical projects"
+          }
+        ]
+      },
+      {
+        "key": "question_R0Q0XK",
+        "label": "What best describes your main role or activity? (single choice)",
+        "type": "MULTIPLE_CHOICE",
+        "value": null,
+        "options": [
+          {
+            "id": "9b3e40b2-e82a-450b-b026-715a1a0c9d14",
+            "text": "Student"
+          },
+          {
+            "id": "db18f3b4-076d-4966-9f09-dbba551f13d1",
+            "text": "Employee (non-technical)"
+          },
+          {
+            "id": "66c5534b-6f76-4739-a6e7-524b5832cf28",
+            "text": "Manager / Business owner"
+          },
+          {
+            "id": "235522aa-fd0e-47d8-9a45-0238c145d4f6",
+            "text": "Technical role"
+          },
+          {
+            "id": "4e053016-6504-4c89-aa0d-bfea97f7e7f7",
+            "text": "Freelancer / Consultant"
+          }
+        ]
+      },
+      {
+        "key": "question_oyZyrb",
+        "label": "How often do you work with digital tools? (single choice)",
+        "type": "MULTIPLE_CHOICE",
+        "value": null,
+        "options": [
+          {
+            "id": "3df7cf3c-571c-46d0-a23b-bec867db3a03",
+            "text": "Constantly"
+          },
+          {
+            "id": "04731fc7-6db1-48c5-be19-7750279b874e",
+            "text": "Often"
+          },
+          {
+            "id": "0ce15af9-9493-4156-bcd4-7e4aa453f131",
+            "text": "Occasionally"
+          },
+          {
+            "id": "2fa2e232-431c-454a-9b69-c995d9a570a8",
+            "text": "Rarely"
+          },
+          {
+            "id": "e778dad7-9e87-4d8f-bd42-99f735fc945a",
+            "text": "Almost never"
+          }
+        ]
+      },
+      {
+        "key": "question_GzVzNe",
+        "label": "AI-assisted software tools are relevant to my work or interests",
+        "type": "LINEAR_SCALE",
+        "value": null
+      },
+      {
+        "key": "question_OzZzpa",
+        "label": "I expect Ai tools to become more important in my field in the next 2 years",
+        "type": "LINEAR_SCALE",
+        "value": null
+      },
+      {
+        "key": "question_V0a0Rj",
+        "label": "Under what conditions would AI-assisted development become relevant for you? (single choice)",
+        "type": "MULTIPLE_CHOICE",
+        "value": null,
+        "options": [
+          {
+            "id": "6d224711-81ec-4b21-9ce2-5d98ec1ee8bd",
+            "text": "If it helped me earn more money"
+          },
+          {
+            "id": "d1a1db5a-5b88-4925-b2a5-cacf6d3684fe",
+            "text": "If it saved me time"
+          },
+          {
+            "id": "7c56dd54-08d4-4013-9682-0ea4539f2329",
+            "text": "If my role require it"
+          },
+          {
+            "id": "d37d440d-6586-47bf-9f1b-bde10236034e",
+            "text": "If it become very easy"
+          },
+          {
+            "id": "60ab1e6b-f240-4939-9a7b-e2fe1ccf18a7",
+            "text": "I don't see a scenario"
+          }
+        ]
+      },
+      {
+        "key": "question_y6bl8B",
+        "label": "In the world of AI, we get results in a blink of an eye. This might undermine our attention spans. Have you been paying attention?",
+        "type": "MULTIPLE_CHOICE",
+        "value": null,
+        "options": [
+          {
+            "id": "66a1fb48-3abb-4630-82b7-1e10553e1bf4",
+            "text": "ChatGPT"
+          },
+          {
+            "id": "2c40fb90-2cb3-4a45-aadd-4fce51f96b24",
+            "text": "Claude"
+          },
+          {
+            "id": "838d1fe8-217d-40dc-ab72-e39746c6bf63",
+            "text": "Lovable"
+          },
+          {
+            "id": "55740e6e-a7e5-4439-9e55-7c49c7744fef",
+            "text": "Replit"
+          },
+          {
+            "id": "cb42b1f1-dd50-425c-8460-a265f06e923b",
+            "text": "Gemini"
+          },
+          {
+            "id": "875f4d5a-728d-40ce-91ef-ac72f9067627",
+            "text": "Yes"
+          }
+        ]
+      },
+      {
+        "key": "question_P6N6M1",
+        "label": "How likely would you be to explore it under those ",
+        "type": "MULTIPLE_CHOICE",
+        "value": null,
+        "options": [
+          {
+            "id": "b8a791d8-ede8-4311-be78-43b8794f04c5",
+            "text": "Very unlikely"
+          },
+          {
+            "id": "f8ab1404-cead-49f2-a64a-2ff46a0c3d3e",
+            "text": "Unlikely"
+          },
+          {
+            "id": "7ea19e6b-4d5c-4aee-b1f5-1a12f1596e4f",
+            "text": "Likely"
+          },
+          {
+            "id": "c028dc3e-50bd-45d5-bdd0-163f0df232dc",
+            "text": "Very likely"
+          }
+        ]
+      },
+      {
+        "key": "question_EXGXjl",
+        "label": "Before this survey, how familiar were you with using Ai to help build software?",
+        "type": "MULTIPLE_CHOICE",
+        "value": null,
+        "options": [
+          {
+            "id": "9a13fa5d-c148-445c-9928-49ea3da21d2d",
+            "text": "Never heard of it"
+          },
+          {
+            "id": "c54fd206-3cd2-4173-bfa4-ed6b9b335fa4",
+            "text": "Heard of it, don't know how it works"
+          },
+          {
+            "id": "214ff5b1-1cbb-45d1-b3de-e846587cf8b7",
+            "text": "Roughly understand it"
+          },
+          {
+            "id": "1149c27d-33f0-49ca-a681-d810bb2cab0a",
+            "text": "Know people who use it"
+          }
+        ]
+      },
+      {
+        "key": "question_r6Q6No",
+        "label": "Building digital tools or automating tasks is relevant to my life or work",
+        "type": "LINEAR_SCALE",
+        "value": null
+      },
+      {
+        "key": "question_48Y8Wr",
+        "label": "If AI could help you create websites, apps or automations without deep technical skills, how interesting would that be? (single choice)",
+        "type": "MULTIPLE_CHOICE",
+        "value": null,
+        "options": [
+          {
+            "id": "024af3a3-9e5b-46e0-a11c-4b6e5aa6a388",
+            "text": "Not interesting"
+          },
+          {
+            "id": "f4ac4c02-7259-466d-9a38-d9cb46baf78c",
+            "text": "Slightly interesting"
+          },
+          {
+            "id": "2cb8d589-f489-42da-bbca-bf1d9b9f03a9",
+            "text": "Moderately interesting"
+          },
+          {
+            "id": "89962d43-0f13-4a44-b890-e97795efe591",
+            "text": "Very interesting"
+          }
+        ]
+      },
+      {
+        "key": "question_jyrydQ",
+        "label": "What would make you most likely to explore this? (single choice)",
+        "type": "MULTIPLE_CHOICE",
+        "value": null,
+        "options": [
+          {
+            "id": "4277b2e4-697a-4cdf-ae60-6f4a05985c8c",
+            "text": "Business or income opportunity"
+          },
+          {
+            "id": "25fb3988-0ab1-4b0f-8c39-1d37217a32cc",
+            "text": "Personal project"
+          },
+          {
+            "id": "2b7e57ca-567f-4ad2-b785-97cea7b2632a",
+            "text": "Beginner-friendly system"
+          },
+          {
+            "id": "8d225c42-5fd2-4adc-9b89-9def83b5e034",
+            "text": "Recommendation from someone I trust"
+          },
+          {
+            "id": "5555ea00-f5c5-42cf-b04d-f3d5a0f5fee9",
+            "text": "I wouldn't explore this"
+          }
+        ]
+      },
+      {
+        "key": "question_2eYeqe",
+        "label": "How likely would you be to invest in learning or using it if it delivered value? (single choice)",
+        "type": "MULTIPLE_CHOICE",
+        "value": null,
+        "options": [
+          {
+            "id": "067ffc0d-5f31-491f-9e6b-407753c9f115",
+            "text": "Very unlikely"
+          },
+          {
+            "id": "70a90a77-05bc-407b-87e4-e6d1e05002fe",
+            "text": "Unlikely"
+          },
+          {
+            "id": "90f7fdc7-2dab-4eae-9e62-f41a482ac494",
+            "text": "Likely"
+          },
+          {
+            "id": "7954adae-e9a0-485a-9e97-e755eb180dfc",
+            "text": "Very likely"
+          }
+        ]
+      },
+      {
+        "key": "question_XD7e6j",
+        "label": "In the world of AI, we get results in a blink of an eye. This might undermine our attention spans. Have you been paying attention?",
+        "type": "MULTIPLE_CHOICE",
+        "value": null,
+        "options": [
+          {
+            "id": "0611ac68-89ac-4440-a142-8868d5bde1bd",
+            "text": "ChatGPT"
+          },
+          {
+            "id": "26be8337-6b52-448e-a8e1-c82fb63944d4",
+            "text": "Claude"
+          },
+          {
+            "id": "4dfc8dce-ae97-4363-8a66-ca5c1a81ba9d",
+            "text": "Lovable"
+          },
+          {
+            "id": "3f16b5e8-0bc5-4b3f-9cae-1818eea95939",
+            "text": "Replit"
+          },
+          {
+            "id": "53c08acb-270b-4599-99f3-de02041c06b6",
+            "text": "Gemini"
+          },
+          {
+            "id": "8d7272ab-3489-48fe-bc74-63573d026123",
+            "text": "Yes"
+          }
+        ]
+      },
+      {
+        "key": "question_xp7pkd",
+        "label": "What price range would feel reasonable? (single choice)",
+        "type": "MULTIPLE_CHOICE",
+        "value": null,
+        "options": [
+          {
+            "id": "840d07a5-517b-4a3c-844d-7aea86e6cc97",
+            "text": "Free only"
+          },
+          {
+            "id": "4547e4d6-fa4f-43a7-8a34-06f70f85b800",
+            "text": "Under $25"
+          },
+          {
+            "id": "0acbac88-23ea-4706-b266-4bb4808f9c06",
+            "text": "$25–$50"
+          },
+          {
+            "id": "f7c0710a-221b-4af5-acf0-8f880581f105",
+            "text": "$50–$100"
+          },
+          {
+            "id": "519ccc45-5715-4bb6-b470-3829f2839a4d",
+            "text": "$100–$250"
+          },
+          {
+            "id": "80fe6078-79d3-4551-965a-7a42e76b0990",
+            "text": "$250+"
+          }
+        ]
+      },
+      {
+        "key": "question_ZNAN4V",
+        "label": "Please give us your best email where we can send the FREE monthly plan access and the instructions!",
+        "type": "INPUT_EMAIL",
+        "value": "sz.bendeguz@gmail.com"
+      }
+    ]
+  }
+}
+2026-01-25 11:47:52.144 [info] =================================
+2026-01-25 11:47:52.144 [info] ======= INDIVIDUAL FIELDS =======
+2026-01-25 11:47:52.144 [info] --- Field 1 ---
+2026-01-25 11:47:52.144 [info] Key: question_K646qD
+2026-01-25 11:47:52.144 [info] Label: Which best describes your current relationship with AI-assisted software development? (single choice)
+2026-01-25 11:47:52.144 [info] Type: MULTIPLE_CHOICE
+2026-01-25 11:47:52.144 [info] Value: [
+  "08f809a3-f845-472a-a241-d714d9a2b41b"
+]
+2026-01-25 11:47:52.144 [info] Value type: object
+2026-01-25 11:47:52.144 [info] Value is array with 1 items
+2026-01-25 11:47:52.144 [info] Item 0: "08f809a3-f845-472a-a241-d714d9a2b41b"
+2026-01-25 11:47:52.144 [info] --- Field 2 ---
+2026-01-25 11:47:52.144 [info] Key: question_LbjbQJ
+2026-01-25 11:47:52.144 [info] Label: How would you describe your overall programming experience? (single choice)
+2026-01-25 11:47:52.144 [info] Type: MULTIPLE_CHOICE
+2026-01-25 11:47:52.144 [info] Value: [
+  "773c9a94-3c1a-4f99-b826-5984338765be"
+]
+2026-01-25 11:47:52.144 [info] Value type: object
+2026-01-25 11:47:52.144 [info] Value is array with 1 items
+2026-01-25 11:47:52.144 [info] Item 0: "773c9a94-3c1a-4f99-b826-5984338765be"
+2026-01-25 11:47:52.144 [info] --- Field 3 ---
+2026-01-25 11:47:52.144 [info] Key: question_pKNKlP
+2026-01-25 11:47:52.144 [info] Label: How often do you use AI tools for coding or building digital products? (single choice)
+2026-01-25 11:47:52.144 [info] Type: MULTIPLE_CHOICE
+2026-01-25 11:47:52.144 [info] Value: [
+  "0a933c09-a3f5-4995-a863-b55995ca667b"
+]
+2026-01-25 11:47:52.144 [info] Value type: object
+2026-01-25 11:47:52.144 [info] Value is array with 1 items
+2026-01-25 11:47:52.144 [info] Item 0: "0a933c09-a3f5-4995-a863-b55995ca667b"
+2026-01-25 11:47:52.144 [info] --- Field 4 ---
+2026-01-25 11:47:52.144 [info] Key: question_1lYl1b
+2026-01-25 11:47:52.144 [info] Label: What do you primarily use AI coding for? (multiple choice)
+2026-01-25 11:47:52.144 [info] Type: MULTIPLE_CHOICE
+2026-01-25 11:47:52.144 [info] Value: [
+  "72e640cd-bf72-4585-99d2-4ac27179fc33"
+]
+2026-01-25 11:47:52.144 [info] Value type: object
+2026-01-25 11:47:52.144 [info] Value is array with 1 items
+2026-01-25 11:47:52.144 [info] Item 0: "72e640cd-bf72-4585-99d2-4ac27179fc33"
+2026-01-25 11:47:52.144 [info] --- Field 5 ---
+2026-01-25 11:47:52.144 [info] Key: question_Mb2b98
+2026-01-25 11:47:52.144 [info] Label: Which best describes your current role of identity? (single choice)
+2026-01-25 11:47:52.144 [info] Type: MULTIPLE_CHOICE
+2026-01-25 11:47:52.144 [info] Value: [
+  "d87b27ba-efca-412d-9ab9-f6749fa71865"
+]
+2026-01-25 11:47:52.144 [info] Value type: object
+2026-01-25 11:47:52.144 [info] Value is array with 1 items
+2026-01-25 11:47:52.145 [info] Item 0: "d87b27ba-efca-412d-9ab9-f6749fa71865"
+2026-01-25 11:47:52.145 [info] --- Field 6 ---
+2026-01-25 11:47:52.145 [info] Key: question_J6r6NX
+2026-01-25 11:47:52.145 [info] Label: Which AI tools do you actively use for coding or building projects? (multiple choice)
+2026-01-25 11:47:52.145 [info] Type: MULTIPLE_CHOICE
+2026-01-25 11:47:52.145 [info] Value: [
+  "036ad844-4304-4e20-846f-0c70a9329a7a"
+]
+2026-01-25 11:47:52.145 [info] Value type: object
+2026-01-25 11:47:52.145 [info] Value is array with 1 items
+2026-01-25 11:47:52.145 [info] Item 0: "036ad844-4304-4e20-846f-0c70a9329a7a"
+2026-01-25 11:47:52.145 [info] --- Field 7 ---
+2026-01-25 11:47:52.145 [info] Key: question_g0V0RJ
+2026-01-25 11:47:52.145 [info] Label: How do you usually start a new AI coding project?
+2026-01-25 11:47:52.145 [info] Type: MULTIPLE_CHOICE
+2026-01-25 11:47:52.145 [info] Value: [
+  "72c2ac11-9a7f-445e-ac58-f96adeb35ebe"
+]
+2026-01-25 11:47:52.145 [info] Value type: object
+2026-01-25 11:47:52.145 [info] Value is array with 1 items
+2026-01-25 11:47:52.145 [info] Item 0: "72c2ac11-9a7f-445e-ac58-f96adeb35ebe"
+2026-01-25 11:47:52.145 [info] --- Field 8 ---
+2026-01-25 11:47:52.145 [info] Key: question_y6b6Wd
+2026-01-25 11:47:52.145 [info] Label: How structured is your project organization (folders, files, modules, naming)?
+2026-01-25 11:47:52.145 [info] Type: LINEAR_SCALE
+2026-01-25 11:47:52.145 [info] Value: 0
+2026-01-25 11:47:52.145 [info] Value type: number
+2026-01-25 11:47:52.145 [info] --- Field 9 ---
+2026-01-25 11:47:52.145 [info] Key: question_XD7DKz
+2026-01-25 11:47:52.145 [info] Label: How confident are you in managing enviroments and setup? (APIs, keys, databases, versioning, hosting)
+2026-01-25 11:47:52.145 [info] Type: LINEAR_SCALE
+2026-01-25 11:47:52.145 [info] Value: 0
+2026-01-25 11:47:52.145 [info] Value type: number
+2026-01-25 11:47:52.145 [info] --- Field 10 ---
+2026-01-25 11:47:52.145 [info] Key: question_8KYK0r
+2026-01-25 11:47:52.145 [info] Label: How do you usually learn new technical skills? (multiple choice)
+2026-01-25 11:47:52.145 [info] Type: MULTIPLE_CHOICE
+2026-01-25 11:47:52.145 [info] Value: [
+  "ce757853-5cf5-4d6b-a707-fcb7a196ae97"
+]
+2026-01-25 11:47:52.145 [info] Value type: object
+2026-01-25 11:47:52.145 [info] Value is array with 1 items
+2026-01-25 11:47:52.145 [info] Item 0: "ce757853-5cf5-4d6b-a707-fcb7a196ae97"
+2026-01-25 11:47:52.145 [info] --- Field 11 ---
+2026-01-25 11:47:52.145 [info] Key: question_0xYxpA
+2026-01-25 11:47:52.145 [info] Label: What format helps you learn best? (single choice)
+2026-01-25 11:47:52.145 [info] Type: MULTIPLE_CHOICE
+2026-01-25 11:47:52.145 [info] Value: [
+  "33374253-c913-4d5f-8551-b374c0e6d48b"
+]
+2026-01-25 11:47:52.145 [info] Value type: object
+2026-01-25 11:47:52.147 [info] Value is array with 1 items
+2026-01-25 11:47:52.147 [info] Item 0: "33374253-c913-4d5f-8551-b374c0e6d48b"
+2026-01-25 11:47:52.147 [info] --- Field 12 ---
+2026-01-25 11:47:52.147 [info] Key: question_zqAqag
+2026-01-25 11:47:52.147 [info] Label: Which outcome would be most valuable to you from an AI coding education system? (single choice)
+2026-01-25 11:47:52.147 [info] Type: MULTIPLE_CHOICE
+2026-01-25 11:47:52.147 [info] Value: [
+  "0ba3e39e-9a8d-449f-afe0-7bd584b353c9"
+]
+2026-01-25 11:47:52.147 [info] Value type: object
+2026-01-25 11:47:52.147 [info] Value is array with 1 items
+2026-01-25 11:47:52.147 [info] Item 0: "0ba3e39e-9a8d-449f-afe0-7bd584b353c9"
+2026-01-25 11:47:52.147 [info] --- Field 13 ---
+2026-01-25 11:47:52.147 [info] Key: question_5zYzyQ
+2026-01-25 11:47:52.147 [info] Label: Have you ever paid for a technical or AI-relates course?
+2026-01-25 11:47:52.147 [info] Type: MULTIPLE_CHOICE
+2026-01-25 11:47:52.147 [info] Value: [
+  "8546ba95-8fa8-4c22-b825-b8951b6e8f62"
+]
+2026-01-25 11:47:52.147 [info] Value type: object
+2026-01-25 11:47:52.147 [info] Value is array with 1 items
+2026-01-25 11:47:52.147 [info] Item 0: "8546ba95-8fa8-4c22-b825-b8951b6e8f62"
+2026-01-25 11:47:52.147 [info] --- Field 14 ---
+2026-01-25 11:47:52.147 [info] Key: question_d6o65V
+2026-01-25 11:47:52.148 [info] Label: What price range would feel reasonable for a high-quality, practical AI coding program? (single choice)
+2026-01-25 11:47:52.148 [info] Type: MULTIPLE_CHOICE
+2026-01-25 11:47:52.148 [info] Value: [
+  "9aa34564-59c9-460d-b0a3-1520dbb82571"
+]
+2026-01-25 11:47:52.148 [info] Value type: object
+2026-01-25 11:47:52.148 [info] Value is array with 1 items
+2026-01-25 11:47:52.148 [info] Item 0: "9aa34564-59c9-460d-b0a3-1520dbb82571"
+2026-01-25 11:47:52.148 [info] --- Field 15 ---
+2026-01-25 11:47:52.148 [info] Key: question_J6r2E4
+2026-01-25 11:47:52.148 [info] Label: In the world of AI, we get results in a blink of an eye. This might undermine our attention spans. Have you been paying attention?
+2026-01-25 11:47:52.148 [info] Type: MULTIPLE_CHOICE
+2026-01-25 11:47:52.148 [info] Value: [
+  "9c666e34-eed7-4c5e-8da9-45fe06375046"
+]
+2026-01-25 11:47:52.148 [info] Value type: object
+2026-01-25 11:47:52.148 [info] Value is array with 1 items
+2026-01-25 11:47:52.148 [info] Item 0: "9c666e34-eed7-4c5e-8da9-45fe06375046"
+2026-01-25 11:47:52.148 [info] --- Field 16 ---
+2026-01-25 11:47:52.148 [info] Key: question_YQbQLv
+2026-01-25 11:47:52.148 [info] Label: How important is AI-assisted development to your future plans? (single choice)
+2026-01-25 11:47:52.149 [info] Type: MULTIPLE_CHOICE
+2026-01-25 11:47:52.149 [info] Value: [
+  "d1ade06a-551a-43b6-b198-079f7e248a6d"
+]
+2026-01-25 11:47:52.149 [info] Value type: object
+2026-01-25 11:47:52.149 [info] Value is array with 1 items
+2026-01-25 11:47:52.149 [info] Item 0: "d1ade06a-551a-43b6-b198-079f7e248a6d"
+2026-01-25 11:47:52.149 [info] --- Field 17 ---
+2026-01-25 11:47:52.149 [info] Key: question_DNoNlE
+2026-01-25 11:47:52.153 [info] Label: Which best describes your main goal right now? (single choice)
+2026-01-25 11:47:52.153 [info] Type: MULTIPLE_CHOICE
+2026-01-25 11:47:52.153 [info] Value: [
+  "3b1e156b-946b-4229-a2e3-adc59d21cb69"
+]
+2026-01-25 11:47:52.153 [info] Value type: object
+2026-01-25 11:47:52.153 [info] Value is array with 1 items
+2026-01-25 11:47:52.153 [info] Item 0: "3b1e156b-946b-4229-a2e3-adc59d21cb69"
+2026-01-25 11:47:52.154 [info] --- Field 18 ---
+2026-01-25 11:47:52.154 [info] Key: question_lyjyPX
+2026-01-25 11:47:52.154 [info] Label: How would you describe your current technical background? (single choice)
+2026-01-25 11:47:52.154 [info] Type: MULTIPLE_CHOICE
+2026-01-25 11:47:52.154 [info] Value: null
+2026-01-25 11:47:52.154 [info] Value type: object
+2026-01-25 11:47:52.154 [info] --- Field 19 ---
+2026-01-25 11:47:52.154 [info] Key: question_R0Q07Q
+2026-01-25 11:47:52.154 [info] Label: What best describes what you currently build (if anything)? (multiple choice)
+2026-01-25 11:47:52.154 [info] Type: MULTIPLE_CHOICE
+2026-01-25 11:47:52.154 [info] Value: null
+2026-01-25 11:47:52.154 [info] Value type: object
+2026-01-25 11:47:52.154 [info] --- Field 20 ---
+2026-01-25 11:47:52.154 [info] Key: question_oyZy4N
+2026-01-25 11:47:52.154 [info] Label: What is your main reason for wanting to explore AI coding? (single choice)
+2026-01-25 11:47:52.154 [info] Type: MULTIPLE_CHOICE
+2026-01-25 11:47:52.154 [info] Value: null
+2026-01-25 11:47:52.154 [info] Value type: object
+2026-01-25 11:47:52.154 [info] --- Field 21 ---
+2026-01-25 11:47:52.154 [info] Key: question_GzVz2O
+2026-01-25 11:47:52.154 [info] Label: What feels like the biggest barrier stopping you from starting right now? (single choice)
+2026-01-25 11:47:52.154 [info] Type: MULTIPLE_CHOICE
+2026-01-25 11:47:52.154 [info] Value: null
+2026-01-25 11:47:52.154 [info] Value type: object
+2026-01-25 11:47:52.154 [info] --- Field 22 ---
+2026-01-25 11:47:52.154 [info] Key: question_OzZzWM
+2026-01-25 11:47:52.154 [info] Label: I believe I could build a real product using Ai if I had the right guidance
+2026-01-25 11:47:52.155 [info] Type: LINEAR_SCALE
+2026-01-25 11:47:52.155 [info] Value: null
+2026-01-25 11:47:52.155 [info] Value type: object
+2026-01-25 11:47:52.155 [info] --- Field 23 ---
+2026-01-25 11:47:52.155 [info] Key: question_V0a0k6
+2026-01-25 11:47:52.155 [info] Label: I worry that AI coding will create more problems than it solves
+2026-01-25 11:47:52.155 [info] Type: LINEAR_SCALE
+2026-01-25 11:47:52.155 [info] Value: null
+2026-01-25 11:47:52.155 [info] Value type: object
+2026-01-25 11:47:52.155 [info] --- Field 24 ---
+2026-01-25 11:47:52.155 [info] Key: question_P6N6ax
+2026-01-25 11:47:52.155 [info] Label: I feel confident learning technical systems without a teacher or mentor
+2026-01-25 11:47:52.155 [info] Type: LINEAR_SCALE
+2026-01-25 11:47:52.155 [info] Value: null
+2026-01-25 11:47:52.155 [info] Value type: object
+2026-01-25 11:47:52.155 [info] --- Field 25 ---
+2026-01-25 11:47:52.155 [info] Key: question_EXGX42
+2026-01-25 11:47:52.155 [info] Label: What would make you feel comfortable starting with AI coding? (single choice)
+2026-01-25 11:47:52.155 [info] Type: MULTIPLE_CHOICE
+2026-01-25 11:47:52.155 [info] Value: null
+2026-01-25 11:47:52.156 [info] Value type: object
+2026-01-25 11:47:52.156 [info] --- Field 26 ---
+2026-01-25 11:47:52.156 [info] Key: question_r6Q6xX
+2026-01-25 11:47:52.156 [info] Label: How much time could you invest per week to learn this? (single choice)
+2026-01-25 11:47:52.156 [info] Type: MULTIPLE_CHOICE
+2026-01-25 11:47:52.156 [info] Value: null
+2026-01-25 11:47:52.156 [info] Value type: object
+2026-01-25 11:47:52.156 [info] --- Field 27 ---
+2026-01-25 11:47:52.156 [info] Key: question_48Y8g5
+2026-01-25 11:47:52.156 [info] Label: Which result would make learning Ai coding "worth it" for you? (single choice)
+2026-01-25 11:47:52.156 [info] Type: MULTIPLE_CHOICE
+2026-01-25 11:47:52.156 [info] Value: null
+2026-01-25 11:47:52.156 [info] Value type: object
+2026-01-25 11:47:52.156 [info] --- Field 28 ---
+2026-01-25 11:47:52.156 [info] Key: question_jyryO1
+2026-01-25 11:47:52.156 [info] Label: How likely would you be to invest in a beginner friendly AI coding program? (single choice)
+2026-01-25 11:47:52.156 [info] Type: MULTIPLE_CHOICE
+2026-01-25 11:47:52.156 [info] Value: null
+2026-01-25 11:47:52.156 [info] Value type: object
+2026-01-25 11:47:52.157 [info] --- Field 29 ---
+2026-01-25 11:47:52.157 [info] Key: question_2eYeMM
+2026-01-25 11:47:52.157 [info] Label: What price range would feel reasonable for that a high quality program? (single choice)
+2026-01-25 11:47:52.157 [info] Type: MULTIPLE_CHOICE
+2026-01-25 11:47:52.157 [info] Value: null
+2026-01-25 11:47:52.158 [info] Value type: object
+2026-01-25 11:47:52.158 [info] --- Field 30 ---
+2026-01-25 11:47:52.158 [info] Key: question_g0V58l
+2026-01-25 11:47:52.158 [info] Label: In the world of AI, we get results in a blink of an eye. This might undermine our attention spans. Have you been paying attention?
+2026-01-25 11:47:52.158 [info] Type: MULTIPLE_CHOICE
+2026-01-25 11:47:52.158 [info] Value: null
+2026-01-25 11:47:52.158 [info] Value type: object
+2026-01-25 11:47:52.158 [info] --- Field 31 ---
+2026-01-25 11:47:52.158 [info] Key: question_xp7pek
+2026-01-25 11:47:52.158 [info] Label: Which best describes how you see yourself in 12 months? (single choice)
+2026-01-25 11:47:52.158 [info] Type: MULTIPLE_CHOICE
+2026-01-25 11:47:52.158 [info] Value: null
+2026-01-25 11:47:52.158 [info] Value type: object
+2026-01-25 11:47:52.158 [info] --- Field 32 ---
+2026-01-25 11:47:52.158 [info] Key: question_R0Q0XK
+2026-01-25 11:47:52.158 [info] Label: What best describes your main role or activity? (single choice)
+2026-01-25 11:47:52.158 [info] Type: MULTIPLE_CHOICE
+2026-01-25 11:47:52.158 [info] Value: null
+2026-01-25 11:47:52.158 [info] Value type: object
+2026-01-25 11:47:52.158 [info] --- Field 33 ---
+2026-01-25 11:47:52.158 [info] Key: question_oyZyrb
+2026-01-25 11:47:52.158 [info] Label: How often do you work with digital tools? (single choice)
+2026-01-25 11:47:52.158 [info] Type: MULTIPLE_CHOICE
+2026-01-25 11:47:52.158 [info] Value: null
+2026-01-25 11:47:52.158 [info] Value type: object
+2026-01-25 11:47:52.158 [info] --- Field 34 ---
+2026-01-25 11:47:52.158 [info] Key: question_GzVzNe
+2026-01-25 11:47:52.159 [info] Label: AI-assisted software tools are relevant to my work or interests
+2026-01-25 11:47:52.159 [info] Type: LINEAR_SCALE
+2026-01-25 11:47:52.159 [info] Value: null
+2026-01-25 11:47:52.159 [info] Value type: object
+2026-01-25 11:47:52.159 [info] --- Field 35 ---
+2026-01-25 11:47:52.159 [info] Key: question_OzZzpa
+2026-01-25 11:47:52.159 [info] Label: I expect Ai tools to become more important in my field in the next 2 years
+2026-01-25 11:47:52.159 [info] Type: LINEAR_SCALE
+2026-01-25 11:47:52.159 [info] Value: null
+2026-01-25 11:47:52.159 [info] Value type: object
+2026-01-25 11:47:52.159 [info] --- Field 36 ---
+2026-01-25 11:47:52.159 [info] Key: question_V0a0Rj
+2026-01-25 11:47:52.159 [info] Label: Under what conditions would AI-assisted development become relevant for you? (single choice)
+2026-01-25 11:47:52.159 [info] Type: MULTIPLE_CHOICE
+2026-01-25 11:47:52.159 [info] Value: null
+2026-01-25 11:47:52.159 [info] Value type: object
+2026-01-25 11:47:52.159 [info] --- Field 37 ---
+2026-01-25 11:47:52.159 [info] Key: question_y6bl8B
+2026-01-25 11:47:52.159 [info] Label: In the world of AI, we get results in a blink of an eye. This might undermine our attention spans. Have you been paying attention?

@@ -11,11 +11,26 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { validateSubmission, extractEmail, fieldsToAnswers, TallySubmission } from '@/lib/validation';
+import { validateSubmission, extractEmail, TallySubmission } from '@/lib/validation';
 import { insertSubmission } from '@/lib/supabase';
 import { sendAbuseEmail } from '@/lib/mailgun';
 
-// Tally webhook payload structure
+// Tally webhook payload structure - includes options for multiple choice
+interface TallyFieldOption {
+    id: string;
+    text: string;
+    isOtherOption?: boolean;
+    optionId?: string;
+}
+
+interface TallyField {
+    key: string;
+    label: string;
+    type: string;
+    value: unknown;
+    options?: TallyFieldOption[];
+}
+
 interface TallyWebhookPayload {
     eventId: string;
     eventType: 'FORM_RESPONSE';
@@ -26,13 +41,58 @@ interface TallyWebhookPayload {
         formId: string;
         formName: string;
         createdAt: string;
-        fields: Array<{
-            key: string;
-            label: string;
-            type: string;
-            value: unknown;
-        }>;
+        fields: TallyField[];
     };
+}
+
+/**
+ * Resolve option IDs to text values for MULTIPLE_CHOICE fields
+ */
+function resolveOptionValue(field: TallyField): string | string[] | null {
+    // If value is null, return null
+    if (field.value === null || field.value === undefined) {
+        return null;
+    }
+
+    // If not a MULTIPLE_CHOICE or no options, return value as-is
+    if (field.type !== 'MULTIPLE_CHOICE' || !field.options) {
+        return field.value as string;
+    }
+
+    // Value is an array of option IDs - resolve to text
+    if (Array.isArray(field.value)) {
+        const resolvedValues = field.value.map(optionId => {
+            const option = field.options!.find(opt => opt.id === optionId);
+            return option ? option.text : optionId; // Fallback to ID if not found
+        });
+        // If single selection, return as string; otherwise as array
+        return resolvedValues.length === 1 ? resolvedValues[0] : resolvedValues;
+    }
+
+    return field.value as string;
+}
+
+/**
+ * Convert Tally fields to a readable format for storage
+ * Preserves order by using index, resolves option IDs to text
+ */
+function tallyFieldsToAnswers(fields: TallyField[]): Record<string, unknown> {
+    const answers: Record<string, unknown> = {};
+
+    fields.forEach((field, index) => {
+        const resolvedValue = resolveOptionValue(field);
+
+        answers[field.key] = {
+            index: index, // Preserve order
+            title: field.label,
+            type: field.type,
+            value: resolvedValue,
+            // Also store raw value for debugging if needed
+            rawValue: field.value,
+        };
+    });
+
+    return answers;
 }
 
 /**
@@ -109,11 +169,13 @@ export async function POST(request: NextRequest) {
             );
         }
 
+        // Use new function that resolves option IDs to text
+        const answersToSave = tallyFieldsToAnswers(payload.data.fields);
+
         // DEBUG: Log the answers that will be saved
-        const answersToSave = fieldsToAnswers(submission.fields);
-        console.log('\n======= ANSWERS TO SAVE IN SUPABASE =======');
+        console.log('\n======= ANSWERS TO SAVE IN SUPABASE (with resolved values) =======');
         console.log(JSON.stringify(answersToSave, null, 2));
-        console.log('===========================================\n');
+        console.log('=================================================================\n');
 
         // 4. Run validation (attention-check + duplicate detection only)
         const validationResult = await validateSubmission(submission);
@@ -126,7 +188,7 @@ export async function POST(request: NextRequest) {
                 await insertSubmission({
                     email,
                     tally_response_id: submission.responseId,
-                    answers: fieldsToAnswers(submission.fields),
+                    answers: answersToSave,
                     classification: 'valid',
                     classification_reason: validationResult.reason,
                 });
@@ -143,7 +205,7 @@ export async function POST(request: NextRequest) {
                 await insertSubmission({
                     email,
                     tally_response_id: submission.responseId,
-                    answers: fieldsToAnswers(submission.fields),
+                    answers: answersToSave,
                     classification: 'attention_fail',
                     classification_reason: validationResult.reason,
                 });
