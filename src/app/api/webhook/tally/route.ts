@@ -58,15 +58,46 @@ function transformTallyPayload(payload: TallyWebhookPayload): TallySubmission {
 }
 
 export async function POST(request: NextRequest) {
+    console.log('========================================');
     console.log('Received Tally webhook');
+    console.log('========================================');
 
     try {
         // 1. Parse payload
         const payload: TallyWebhookPayload = await request.json();
+
+        // DEBUG: Log the complete raw payload from Tally
+        console.log('\n======= RAW TALLY PAYLOAD =======');
+        console.log(JSON.stringify(payload, null, 2));
+        console.log('=================================\n');
+
+        // DEBUG: Log each field individually for better visibility
+        console.log('\n======= INDIVIDUAL FIELDS =======');
+        payload.data.fields.forEach((field, index) => {
+            console.log(`\n--- Field ${index + 1} ---`);
+            console.log('Key:', field.key);
+            console.log('Label:', field.label);
+            console.log('Type:', field.type);
+            console.log('Value:', JSON.stringify(field.value, null, 2));
+            console.log('Value type:', typeof field.value);
+            if (Array.isArray(field.value)) {
+                console.log('Value is array with', field.value.length, 'items');
+                field.value.forEach((item, i) => {
+                    console.log(`  Item ${i}:`, JSON.stringify(item, null, 2));
+                });
+            }
+        });
+        console.log('=================================\n');
+
         console.log('Processing submission:', payload.data.responseId);
 
         // 2. Transform to internal format
         const submission = transformTallyPayload(payload);
+
+        // DEBUG: Log transformed submission
+        console.log('\n======= TRANSFORMED SUBMISSION =======');
+        console.log(JSON.stringify(submission, null, 2));
+        console.log('======================================\n');
 
         // 3. Extract email
         const email = extractEmail(submission.fields);
@@ -77,6 +108,12 @@ export async function POST(request: NextRequest) {
                 { status: 400 }
             );
         }
+
+        // DEBUG: Log the answers that will be saved
+        const answersToSave = fieldsToAnswers(submission.fields);
+        console.log('\n======= ANSWERS TO SAVE IN SUPABASE =======');
+        console.log(JSON.stringify(answersToSave, null, 2));
+        console.log('===========================================\n');
 
         // 4. Run validation (attention-check + duplicate detection only)
         const validationResult = await validateSubmission(submission);
