@@ -59,7 +59,7 @@ export function getAbuseEmailTemplate(): EmailTemplate {
               </div>
               
               <p style="color: #555; font-size: 15px; line-height: 1.6; margin: 20px 0 0 0;">
-                If you believe this was made in error, please reply to this email with details about your submission and we will review your case.
+                If you believe this was made in error, please <a href="https://www.flowcrest.app/nodeprompter/help/help.html" style="color: #667eea; text-decoration: none;">contact our support team</a> with details about your submission. Scroll down to the Support section and write us a letter.
               </p>
             </td>
           </tr>
@@ -92,7 +92,9 @@ Unfortunately, your submission did not pass our verification process. Our system
 
 As a result, we are unable to issue a reward for this submission.
 
-If you believe this was made in error, please reply to this email with details about your submission and we will review your case.
+If you believe this was made in error, please contact our support team at:
+https://www.flowcrest.app/nodeprompter/help/help.html
+(Scroll down to the Support section and write us a letter)
 
 Flowcrest Team
   `.trim();

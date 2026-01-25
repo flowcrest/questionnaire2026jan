@@ -94,7 +94,7 @@ export function getRewardEmailTemplate(promoCode: string): EmailTemplate {
           <tr>
             <td style="background-color: #f9f9f9; padding: 25px 30px; text-align: center; border-top: 1px solid #eee;">
               <p style="color: #888; font-size: 13px; margin: 0;">
-                Questions? Reply to this email and we'll help you out.
+                Questions? <a href="https://www.flowcrest.app/nodeprompter/help/help.html" style="color: #667eea; text-decoration: none;">Contact our support team</a> (scroll to Support section).
               </p>
               <p style="color: #aaa; font-size: 12px; margin: 10px 0 0 0;">
                 Flowcrest Team
@@ -133,7 +133,9 @@ How to redeem your reward:
 
 This code is valid for one-time use only and cannot be combined with other offers.
 
-Questions? Reply to this email and we'll help you out.
+Questions? Contact our support team:
+https://www.flowcrest.app/nodeprompter/help/help.html
+(Scroll down to the Support section)
 
 Flowcrest Team
   `.trim();
