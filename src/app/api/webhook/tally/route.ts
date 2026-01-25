@@ -118,116 +118,95 @@ function transformTallyPayload(payload: TallyWebhookPayload): TallySubmission {
 }
 
 export async function POST(request: NextRequest) {
-    console.log('========================================');
-    console.log('Received Tally webhook');
-    console.log('========================================');
+    console.log('[Tally Webhook] Received request');
 
     try {
         // 1. Parse payload
         const payload: TallyWebhookPayload = await request.json();
-
-        // DEBUG: Log the complete raw payload from Tally
-        console.log('\n======= RAW TALLY PAYLOAD =======');
-        console.log(JSON.stringify(payload, null, 2));
-        console.log('=================================\n');
-
-        // DEBUG: Log each field individually for better visibility
-        console.log('\n======= INDIVIDUAL FIELDS =======');
-        payload.data.fields.forEach((field, index) => {
-            console.log(`\n--- Field ${index + 1} ---`);
-            console.log('Key:', field.key);
-            console.log('Label:', field.label);
-            console.log('Type:', field.type);
-            console.log('Value:', JSON.stringify(field.value, null, 2));
-            console.log('Value type:', typeof field.value);
-            if (Array.isArray(field.value)) {
-                console.log('Value is array with', field.value.length, 'items');
-                field.value.forEach((item, i) => {
-                    console.log(`  Item ${i}:`, JSON.stringify(item, null, 2));
-                });
-            }
-        });
-        console.log('=================================\n');
-
-        console.log('Processing submission:', payload.data.responseId);
+        console.log('[Tally Webhook] Processing submission:', payload.data.responseId, 'from form:', payload.data.formName);
 
         // 2. Transform to internal format
         const submission = transformTallyPayload(payload);
 
-        // DEBUG: Log transformed submission
-        console.log('\n======= TRANSFORMED SUBMISSION =======');
-        console.log(JSON.stringify(submission, null, 2));
-        console.log('======================================\n');
-
         // 3. Extract email
         const email = extractEmail(submission.fields);
+        console.log('[Tally Webhook] Email extracted:', email);
+
         if (!email) {
-            console.error('No email found in submission');
+            console.error('[Tally Webhook] ERROR: No email found in submission');
             return NextResponse.json(
                 { error: 'No email found' },
                 { status: 400 }
             );
         }
 
-        // Use new function that resolves option IDs to text
+        // 4. Prepare answers with resolved option values
         const answersToSave = tallyFieldsToAnswers(payload.data.fields);
 
-        // DEBUG: Log the answers that will be saved
-        console.log('\n======= ANSWERS TO SAVE IN SUPABASE (with resolved values) =======');
-        console.log(JSON.stringify(answersToSave, null, 2));
-        console.log('=================================================================\n');
-
-        // 4. Run validation (attention-check + duplicate detection only)
+        // 5. Run validation (attention-check + duplicate detection)
+        console.log('[Tally Webhook] Running validation...');
         const validationResult = await validateSubmission(submission);
-        console.log('Validation result:', validationResult);
+        console.log('[Tally Webhook] Validation result:', validationResult.classification, '-', validationResult.reason);
 
-        // 5. Handle based on classification
+        // 6. Handle based on classification
         switch (validationResult.classification) {
             case 'valid':
-                // Insert into database - this will trigger Supabase webhook for reward
-                await insertSubmission({
-                    email,
-                    tally_response_id: submission.responseId,
-                    answers: answersToSave,
-                    classification: 'valid',
-                    classification_reason: validationResult.reason,
-                });
-                console.log('Valid submission stored:', submission.responseId);
+                console.log('[Tally Webhook] Inserting VALID submission to Supabase...');
+                try {
+                    const insertedRecord = await insertSubmission({
+                        email,
+                        tally_response_id: submission.responseId,
+                        answers: answersToSave,
+                        classification: 'valid',
+                        classification_reason: validationResult.reason,
+                    });
+                    console.log('[Tally Webhook] SUCCESS: Valid submission stored with ID:', insertedRecord?.id);
+                } catch (insertError) {
+                    console.error('[Tally Webhook] ERROR inserting to Supabase:', insertError);
+                    throw insertError;
+                }
                 break;
 
             case 'duplicate':
-                // Silent drop - user already received reward
-                console.log('Duplicate submission ignored:', submission.responseId, email);
+                console.log('[Tally Webhook] DUPLICATE: Submission ignored for', email);
                 break;
 
             case 'attention_fail':
-                // Store for records, then send abuse email
-                await insertSubmission({
-                    email,
-                    tally_response_id: submission.responseId,
-                    answers: answersToSave,
-                    classification: 'attention_fail',
-                    classification_reason: validationResult.reason,
-                });
+                console.log('[Tally Webhook] ATTENTION FAIL: Storing submission and sending abuse email...');
+                try {
+                    const insertedRecord = await insertSubmission({
+                        email,
+                        tally_response_id: submission.responseId,
+                        answers: answersToSave,
+                        classification: 'attention_fail',
+                        classification_reason: validationResult.reason,
+                    });
+                    console.log('[Tally Webhook] Attention fail submission stored with ID:', insertedRecord?.id);
 
-                // Send abuse notification email
-                const emailResult = await sendAbuseEmail(email);
-                if (emailResult.success) {
-                    console.log('Abuse email sent to:', email);
-                } else {
-                    console.error('Failed to send abuse email:', emailResult.error);
+                    // Send abuse notification email
+                    console.log('[Tally Webhook] Sending abuse email to:', email);
+                    const emailResult = await sendAbuseEmail(email);
+                    if (emailResult.success) {
+                        console.log('[Tally Webhook] SUCCESS: Abuse email sent to:', email);
+                    } else {
+                        console.error('[Tally Webhook] ERROR: Failed to send abuse email:', emailResult.error);
+                    }
+                } catch (insertError) {
+                    console.error('[Tally Webhook] ERROR handling attention fail:', insertError);
+                    throw insertError;
                 }
                 break;
         }
 
         // Always return success to Tally
+        console.log('[Tally Webhook] Request completed successfully');
         return NextResponse.json({
             success: true,
             classification: validationResult.classification,
         });
 
     } catch (error) {
-        console.error('Error processing Tally webhook:', error);
+        console.error('[Tally Webhook] FATAL ERROR:', error);
         return NextResponse.json(
             { error: 'Internal server error' },
             { status: 500 }

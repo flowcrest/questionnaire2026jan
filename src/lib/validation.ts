@@ -69,9 +69,7 @@ function checkAttentionAnswer(fields: TallyAnswer[]): boolean {
     );
 
     if (!attentionField) {
-        // No answered attention check field found - this shouldn't happen
-        // but if it does, log it and consider it failed
-        console.warn('No answered attention check field found');
+        console.warn('[Validation] No answered attention check field found');
         return false;
     }
 
@@ -80,26 +78,12 @@ function checkAttentionAnswer(fields: TallyAnswer[]): boolean {
     if (typeof attentionField.value === 'string') {
         answer = attentionField.value;
     } else if (Array.isArray(attentionField.value)) {
-        // For multiple choice, we get UUID(s) - we need to look up the text
-        // But at this point we only have the internal format without options
-        // So we'll just use the UUID as-is and compare
         answer = attentionField.value[0]?.toString() || '';
     } else {
         answer = String(attentionField.value);
     }
 
-    console.log('Attention check - Field title:', attentionField.field.title);
-    console.log('Attention check - Raw answer:', answer);
-
-    // Check if answer matches "Yes"
-    // Since we receive UUID, we need to check if the text contains "Yes" when resolved
-    // However, at validation stage we only have UUID - so we need a different approach
-    // Let's check the UUID against known "Yes" option IDs from the logs:
-    // Branch 1: "d52b3b5d-e0cd-454c-afa3-15276ea5b2ef" = "Yes"
-    // Branch 2: "ec4062ef-8d35-40f9-8afc-0bb67d41b086" = "Yes"  
-    // Branch 3: "875f4d5a-728d-40ce-91ef-ac72f9067627" = "Yes"
-    // Branch 4: "8d7272ab-3489-48fe-bc74-63573d026123" = "Yes"
-
+    // Known "Yes" option UUIDs from each branch
     const yesOptionIds = [
         'd52b3b5d-e0cd-454c-afa3-15276ea5b2ef', // Branch 1
         'ec4062ef-8d35-40f9-8afc-0bb67d41b086', // Branch 2
@@ -107,10 +91,7 @@ function checkAttentionAnswer(fields: TallyAnswer[]): boolean {
         '8d7272ab-3489-48fe-bc74-63573d026123', // Branch 4
     ];
 
-    const isCorrect = yesOptionIds.includes(answer);
-    console.log('Attention check - Is correct:', isCorrect);
-
-    return isCorrect;
+    return yesOptionIds.includes(answer);
 }
 
 /**
